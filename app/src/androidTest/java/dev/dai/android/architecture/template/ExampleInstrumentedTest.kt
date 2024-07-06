@@ -17,6 +17,7 @@ class ExampleInstrumentedTest {
   fun useAppContext() {
     // Context of the app under test.
     val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-    assertEquals("dev.dai.android.architecture.template", appContext.packageName)
+    println(appContext.packageName)
+    assertEquals("dev.dai.android.architecture.template.debug", appContext.packageName)
   }
 }

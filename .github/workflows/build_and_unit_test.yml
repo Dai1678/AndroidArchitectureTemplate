@@ -3,8 +3,9 @@ name: Run build and unit test
 on:
   pull_request:
     paths-ignore:
-      - 'README.md'
+      - '**.md'
       - '.github/**'
+      - '!.github/workflows/**'
 
 concurrency:
   group: ${{ github.head_ref }}

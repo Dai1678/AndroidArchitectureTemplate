@@ -24,4 +24,4 @@ jobs:
       - name: run danger
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          run: bundle exec danger
+        run: bundle exec danger

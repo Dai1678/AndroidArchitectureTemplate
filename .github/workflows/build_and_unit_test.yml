@@ -66,10 +66,10 @@ jobs:
     uses: ./.github/workflows/lint_check.yml
 
   coverage:
-    uses: ./.github/workflows/coverage.yml
     needs: [ build_test, androidTest ]
+    uses: ./.github/workflows/coverage.yml
 
   danger:
-    uses: ./.github/workflows/danger.yml
     needs: [ build_test, androidTest, coverage ]
+    uses: ./.github/workflows/danger.yml
     if: ${{ always() }}

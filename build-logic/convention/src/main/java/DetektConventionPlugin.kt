@@ -1,11 +1,9 @@
-import dev.dai.android.architecture.build_logic.libs
 import io.gitlab.arturbosch.detekt.Detekt
 import io.gitlab.arturbosch.detekt.extensions.DetektExtension
 import io.gitlab.arturbosch.detekt.report.ReportMergeTask
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
-import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.getValue
 import org.gradle.kotlin.dsl.provideDelegate
 import org.gradle.kotlin.dsl.registering
@@ -19,12 +17,7 @@ class DetektConventionPlugin : Plugin<Project> {
       config.setFrom(files("$rootDir/detekt.yml"))
       buildUponDefaultConfig = true
       parallel = true
-      autoCorrect = true
       basePath = rootProject.projectDir.absolutePath
-    }
-
-    dependencies {
-      add("detektPlugins", libs.findLibrary("detekt-formatting").get())
     }
 
     val reportMerge by tasks.registering(ReportMergeTask::class) {

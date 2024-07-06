@@ -64,6 +64,8 @@ jobs:
 
   lint:
     uses: ./.github/workflows/lint_check.yml
+    permissions:
+      security-events: write
 
   coverage:
     needs: [ build_test, androidTest ]

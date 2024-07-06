@@ -30,7 +30,7 @@ class DetektConventionPlugin : Plugin<Project> {
       finalizedBy(reportMerge)
     }
     reportMerge.configure {
-      input.from(tasks.withType<Detekt>().map { it.xmlReportFile })
+      input.from(tasks.withType<Detekt>().map { it.sarifReportFile })
     }
   }
 }

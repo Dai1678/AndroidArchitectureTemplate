@@ -3,10 +3,6 @@ name: Run danger
 on:
   workflow_call:
 
-concurrency:
-  group: ${{ github.head_ref }}
-  cancel-in-progress: true
-
 jobs:
   danger:
     runs-on: ubuntu-latest

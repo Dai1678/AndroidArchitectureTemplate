@@ -3,10 +3,6 @@ name: Run instrumented test
 on:
   workflow_call:
 
-concurrency:
-  group: ${{ github.head_ref }}
-  cancel-in-progress: true
-
 jobs:
   androidTest:
     runs-on: ubuntu-latest

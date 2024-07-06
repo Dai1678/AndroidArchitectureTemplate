@@ -3,10 +3,6 @@ name: Create jacoco coverage report
 on:
   workflow_call:
 
-concurrency:
-  group: ${{ github.head_ref }}
-  cancel-in-progress: true
-
 jobs:
   coverage:
     runs-on: ubuntu-latest

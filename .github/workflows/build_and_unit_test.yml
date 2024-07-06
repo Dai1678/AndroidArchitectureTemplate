@@ -60,16 +60,16 @@ jobs:
           category: "kotlin"
 
   androidTest:
-    uses: ./.github/instrumented_test.yml
+    uses: ./.github/workflows/instrumented_test.yml
 
   lint:
-    uses: ./.github/lint_check.yml
+    uses: ./.github/workflows/lint_check.yml
 
   coverage:
-    uses: ./.github/coverage.yml
+    uses: ./.github/workflows/coverage.yml
     needs: [ build_test, androidTest ]
 
   danger:
-    uses: ./.github/danger.yml
+    uses: ./.github/workflows/danger.yml
     needs: [ build_test, androidTest, coverage ]
     if: ${{ always() }}

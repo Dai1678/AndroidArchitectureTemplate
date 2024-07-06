@@ -19,6 +19,8 @@ dependencies {
   compileOnly(libs.android.gradlePlugin)
   compileOnly(libs.compose.gradlePlugin)
   compileOnly(libs.detekt.gradlePlugin)
+  compileOnly(libs.firebase.crashlytics.gradlePlugin)
+  compileOnly(libs.firebase.performance.gradlePlugin)
   compileOnly(libs.kotlin.gradlePlugin)
   compileOnly(libs.ksp.gradlePlugin)
 }
@@ -28,6 +30,10 @@ gradlePlugin {
     register("androidApplicationCompose") {
       id = "android.architecture.template.android.application.compose"
       implementationClass = "AndroidApplicationComposeConventionPlugin"
+    }
+    register("androidApplicationFirebase") {
+      id = "android.architecture.template.android.application.firebase"
+      implementationClass = "AndroidApplicationFirebaseConventionPlugin"
     }
     register("androidApplication") {
       id = "android.architecture.template.android.application"

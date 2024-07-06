@@ -1,6 +1,7 @@
 plugins {
   alias(libs.plugins.android.architecture.template.android.application)
   alias(libs.plugins.android.architecture.template.android.application.compose)
+  alias(libs.plugins.android.architecture.template.android.application.firebase)
   alias(libs.plugins.android.architecture.template.android.application.jacoco)
   alias(libs.plugins.android.architecture.template.android.hilt)
 }

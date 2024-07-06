@@ -17,11 +17,12 @@ class DetektConventionPlugin : Plugin<Project> {
       config.setFrom(files("$rootDir/detekt.yml"))
       buildUponDefaultConfig = true
       parallel = true
+      ignoreFailures = true
       basePath = rootProject.projectDir.absolutePath
     }
 
     val reportMerge by tasks.registering(ReportMergeTask::class) {
-      output.set(rootProject.layout.buildDirectory.file("reports/detekt/merge.xml"))
+      output.set(rootProject.layout.buildDirectory.file("reports/detekt/merge.sarif"))
     }
     tasks.withType<Detekt>().configureEach {
       jvmTarget = "17"
@@ -29,7 +30,7 @@ class DetektConventionPlugin : Plugin<Project> {
       finalizedBy(reportMerge)
     }
     reportMerge.configure {
-      input.from(tasks.withType<Detekt>().map { it.xmlReportFile })
+      input.from(tasks.withType<Detekt>().map { it.sarifReportFile })
     }
   }
 }

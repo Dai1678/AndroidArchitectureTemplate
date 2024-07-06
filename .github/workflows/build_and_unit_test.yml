@@ -14,11 +14,19 @@ jobs:
   build_test:
     runs-on: ubuntu-latest
     timeout-minutes: 30
+    permissions:
+      security-events: write
 
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: java-kotlin
+          build-mode: manual
 
       - name: set up JDK 17
         uses: actions/setup-java@v4.0.0
@@ -36,27 +44,26 @@ jobs:
         run: ./gradlew assembleDebug --no-daemon --stacktrace
 
       - name: Run test
-        if: always()
         run: ./gradlew testDebug --no-daemon --stacktrace
 
-      - name: Upload test reports
-        if: always()
-        uses: actions/upload-artifact@v4
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v3
         with:
-          name: unit-test-reports
-          path: ./*/build/reports/tests/*/index.html
+          category: "kotlin"
 
   androidTest:
-    uses: ./.github/instrumented_test.yml
+    uses: ./.github/workflows/instrumented_test.yml
 
   lint:
-    uses: ./.github/lint_check.yml
+    uses: ./.github/workflows/lint_check.yml
+    permissions:
+      security-events: write
 
   coverage:
-    uses: ./.github/coverage.yml
     needs: [ build_test, androidTest ]
+    uses: ./.github/workflows/coverage.yml
 
   danger:
-    uses: ./.github/danger.yml
-    needs: [ build_test, androidTest, lint, coverage ]
+    needs: [ build_test, androidTest, coverage ]
+    uses: ./.github/workflows/danger.yml
     if: ${{ always() }}

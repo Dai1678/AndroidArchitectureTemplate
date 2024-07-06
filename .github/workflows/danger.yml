@@ -3,10 +3,6 @@ name: Run danger
 on:
   workflow_call:
 
-concurrency:
-  group: ${{ github.head_ref }}
-  cancel-in-progress: true
-
 jobs:
   danger:
     runs-on: ubuntu-latest
@@ -24,4 +20,4 @@ jobs:
       - name: run danger
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          run: bundle exec danger
+        run: bundle exec danger

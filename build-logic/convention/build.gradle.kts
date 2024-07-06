@@ -60,10 +60,6 @@ gradlePlugin {
       id = "android.architecture.template.android.library.jacoco"
       implementationClass = "AndroidLibraryJacocoConventionPlugin"
     }
-    register("androidTest") {
-      id = "android.architecture.template.android.test"
-      implementationClass = "AndroidTestConventionPlugin"
-    }
     register("androidHilt") {
       id = "android.architecture.template.android.hilt"
       implementationClass = "AndroidHiltConventionPlugin"

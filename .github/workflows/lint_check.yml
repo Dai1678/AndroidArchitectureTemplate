@@ -26,14 +26,6 @@ jobs:
       - name: Run androidLint
         run: ./gradlew lintDebug --no-daemon
 
-      - name: Upload lint reports
-        uses: actions/upload-artifact@v4
-        with:
-          name: lint-reports
-          path: |
-            ./*/build/reports/list-results-*.html
-            ./*/build/reports/detekt/detekt.html
-
       - name: Upload SARIF file
         uses: github/codeql-action/upload-sarif@v3
         with:

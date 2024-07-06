@@ -25,9 +25,3 @@ jobs:
 
       - name: Run jacoco coverage report
         run: ./gradlew createDebugCombinedCoverageReport --stacktrace
-
-      - name: Upload coverage report
-        uses: actions/upload-artifact@v4
-        with:
-          name: coverage-report
-          path: ./*/build/jacoco/createDebugCombinedCoverageReport/*/index.html

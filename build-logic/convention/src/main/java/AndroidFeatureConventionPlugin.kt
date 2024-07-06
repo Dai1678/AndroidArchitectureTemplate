@@ -13,6 +13,7 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
       pluginManager.apply {
         apply("android.architecture.template.android.library")
         apply("android.architecture.template.android.hilt")
+        apply("android.architecture.template.detekt")
       }
       extensions.configure<LibraryExtension> {
         testOptions.animationsDisabled = true

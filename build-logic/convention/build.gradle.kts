@@ -18,6 +18,7 @@ kotlin {
 dependencies {
   compileOnly(libs.android.gradlePlugin)
   compileOnly(libs.compose.gradlePlugin)
+  compileOnly(libs.detekt.gradlePlugin)
   compileOnly(libs.kotlin.gradlePlugin)
   compileOnly(libs.ksp.gradlePlugin)
 }
@@ -60,9 +61,9 @@ gradlePlugin {
       id = "android.architecture.template.android.hilt"
       implementationClass = "AndroidHiltConventionPlugin"
     }
-    register("androidLint") {
-      id = "android.architecture.template.android.lint"
-      implementationClass = "AndroidLintConventionPlugin"
+    register("detekt") {
+      id = "android.architecture.template.detekt"
+      implementationClass = "DetektConventionPlugin"
     }
   }
 }

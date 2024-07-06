@@ -27,7 +27,6 @@ jobs:
         run: ./gradlew createDebugCombinedCoverageReport --stacktrace
 
       - name: Upload coverage report
-        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: coverage-report

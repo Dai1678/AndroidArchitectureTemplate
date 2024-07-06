@@ -43,6 +43,7 @@ private val coverageExclusions = listOf(
   "**/*component/**/*.*",
   "**/*Screen*.*",
   "**/*Content*.*",
+  "**/theme/**/*.*",
 )
 
 private fun String.capitalize() = replaceFirstChar {
@@ -75,14 +76,11 @@ internal fun Project.configureJacoco(
       "create${variant.name.capitalize()}CombinedCoverageReport",
       JacocoReport::class,
     ) {
-
       classDirectories.setFrom(
-        allJars,
-        allDirectories.map { dirs ->
-          dirs.map { dir ->
-            myObjFactory.fileTree().setDir(dir).exclude(coverageExclusions)
-          }
-        },
+        fileTree("$buildDir/tmp/kotlin-classes/${variant.name}")
+          .matching { exclude(coverageExclusions) },
+        fileTree("${buildDir}/intermediates/javac/${variant.name}")
+          .matching { exclude(coverageExclusions) },
       )
       reports {
         xml.required.set(true)

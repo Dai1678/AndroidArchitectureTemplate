@@ -28,5 +28,8 @@ class DetektConventionPlugin : Plugin<Project> {
       exclude("**/build/**")
       finalizedBy(reportMerge)
     }
+    reportMerge.configure {
+      input.from(tasks.withType<Detekt>().map { it.xmlReportFile })
+    }
   }
 }

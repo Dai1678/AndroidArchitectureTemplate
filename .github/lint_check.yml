@@ -32,9 +32,7 @@ jobs:
 
       - name: Upload lint reports
         if: always()
-        uses: actions/upload-artifact@v4
+      - uses: github/codeql-action/upload-sarif@v3
         with:
-          name: lint-reports
-          path: |
-            ./*/build/reports/list-results-*.html
-            ./*/build/reports/detekt/detekt.html
+          sarif_file: ./*/build/reports/*.sarif
+          category: lint

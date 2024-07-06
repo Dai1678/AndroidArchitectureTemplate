@@ -6,5 +6,6 @@ fun Lint.configure() {
   abortOnError = false
   xmlReport = true
   htmlReport = true
+  sarifReport = true
   checkDependencies = true
 }

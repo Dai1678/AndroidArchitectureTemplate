@@ -1,4 +1,5 @@
 import com.android.build.api.dsl.ApplicationExtension
+import com.google.firebase.appdistribution.gradle.AppDistributionExtension
 import com.google.firebase.crashlytics.buildtools.gradle.CrashlyticsExtension
 import dev.dai.android.architecture.build_logic.libs
 import org.gradle.api.Plugin
@@ -27,9 +28,17 @@ class AndroidApplicationFirebaseConventionPlugin : Plugin<Project> {
       extensions.configure<ApplicationExtension> {
         buildTypes.configureEach {
           // Disable the Crashlytics mapping file upload.
-          // TODO This feature should only be enabled if a Firebase backend is available and configured in google-services.json.
+          // TODO This feature should only be enabled
+          //  if a Firebase backend is available and configured in google-services.json.
           configure<CrashlyticsExtension> {
             mappingFileUploadEnabled = false
+          }
+
+          if (name == "release") {
+            configure<AppDistributionExtension> {
+              artifactType = "APK"
+              artifactPath = "${project.layout.buildDirectory}/outputs/apk/release/app-release.apk"
+            }
           }
         }
       }

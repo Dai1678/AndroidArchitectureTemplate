@@ -19,6 +19,7 @@ dependencies {
   compileOnly(libs.android.gradlePlugin)
   compileOnly(libs.compose.gradlePlugin)
   compileOnly(libs.detekt.gradlePlugin)
+  compileOnly(libs.firebase.appdistribution.gradlePlugin)
   compileOnly(libs.firebase.crashlytics.gradlePlugin)
   compileOnly(libs.firebase.performance.gradlePlugin)
   compileOnly(libs.kotlin.gradlePlugin)

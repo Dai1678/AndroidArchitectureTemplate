@@ -23,11 +23,17 @@ jobs:
       - name: Run detekt
         run: ./gradlew detekt --no-daemon
 
+      - name: Upload detekt SARIF file
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: ./build/reports/detekt/merge.sarif
+          category: detekt
+
       - name: Run androidLint
         run: ./gradlew lintDebug --no-daemon
 
-      - name: Upload SARIF file
+      - name: Upload androidLint SARIF file
         uses: github/codeql-action/upload-sarif@v3
         with:
-          sarif_file: ./*/build/reports
-          category: lint
+          sarif_file: ./app/build/reports/lint-results-debug.sarif
+          category: androidLint

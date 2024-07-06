@@ -22,7 +22,7 @@ class DetektConventionPlugin : Plugin<Project> {
     }
 
     val reportMerge by tasks.registering(ReportMergeTask::class) {
-      output.set(rootProject.layout.buildDirectory.file("reports/detekt/merge.xml"))
+      output.set(rootProject.layout.buildDirectory.file("reports/detekt/merge.sarif"))
     }
     tasks.withType<Detekt>().configureEach {
       jvmTarget = "17"

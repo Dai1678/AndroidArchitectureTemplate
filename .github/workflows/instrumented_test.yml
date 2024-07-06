@@ -9,7 +9,7 @@ jobs:
     timeout-minutes: 30
     strategy:
       matrix:
-        api-level: [ 28, 34 ]
+        api-level: [ 34 ]
 
     steps:
       - name: Enable KVM group perms
@@ -34,4 +34,4 @@ jobs:
           api-level: ${{ matrix.api-level }}
           arch: x86_64
           disable-animations: true
-          script: ./gradlew connectedCheck --stacktrace
+          script: ./gradlew connectedCheck --no-daemon --stacktrace

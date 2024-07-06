@@ -24,4 +24,4 @@ jobs:
           cache-read-only: ${{ github.ref != 'refs/heads/main' }}
 
       - name: Run jacoco coverage report
-        run: ./gradlew createDebugCombinedCoverageReport --stacktrace
+        run: ./gradlew createDebugCombinedCoverageReport --no-daemon --stacktrace

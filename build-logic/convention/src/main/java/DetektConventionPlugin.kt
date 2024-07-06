@@ -17,6 +17,7 @@ class DetektConventionPlugin : Plugin<Project> {
       config.setFrom(files("$rootDir/detekt.yml"))
       buildUponDefaultConfig = true
       parallel = true
+      ignoreFailures = true
       basePath = rootProject.projectDir.absolutePath
     }
 

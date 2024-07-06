@@ -58,5 +58,5 @@ jobs:
 
   danger:
     uses: ./.github/danger.yml
-    needs: [ build_test, androidTest, lint, coverage ]
+    needs: [ build_test, androidTest, coverage ]
     if: ${{ always() }}

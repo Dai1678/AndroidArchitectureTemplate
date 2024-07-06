@@ -14,11 +14,19 @@ jobs:
   build_test:
     runs-on: ubuntu-latest
     timeout-minutes: 30
+    permissions:
+      security-events: write
 
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: java-kotlin
+          build-mode: manual
 
       - name: set up JDK 17
         uses: actions/setup-java@v4.0.0
@@ -45,6 +53,11 @@ jobs:
         with:
           name: unit-test-reports
           path: ./*/build/reports/tests/*/index.html
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v3
+        with:
+          category: "kotlin"
 
   androidTest:
     uses: ./.github/instrumented_test.yml

@@ -1,0 +1,19 @@
+plugins {
+  alias(libs.plugins.android.architecture.template.android.library)
+  alias(libs.plugins.android.architecture.template.android.library.jacoco)
+  alias(libs.plugins.android.architecture.template.android.hilt)
+  id("kotlinx-serialization")
+}
+
+android {
+  namespace = "dev.dai.android.architecture.core.network"
+}
+
+dependencies {
+  implementation(libs.kotlinx.serialization.json)
+  implementation(libs.okhttp.logging)
+  implementation(libs.retrofit.core)
+  implementation(libs.retrofit.kotlin.serialization)
+
+  testImplementation(libs.kotlinx.coroutines.test)
+}

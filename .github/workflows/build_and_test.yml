@@ -15,6 +15,10 @@ jobs:
   build_test:
     runs-on: ubuntu-latest
     timeout-minutes: 30
+    permissions:
+      contents: write
+      pull-requests: write
+      repository-projects: write
 
     steps:
       - uses: actions/checkout@v4
@@ -71,4 +75,13 @@ jobs:
       - name: Run jacoco coverage report
         run: ./gradlew createDebugCombinedCoverageReport --no-daemon --stacktrace
 
-      - uses: ./.github/actions/danger
+      - name: Setup ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
+          bundler-cache: true
+
+      - name: run danger
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: bundle exec danger

@@ -36,5 +36,3 @@ jobs:
         with:
           sarif_file: ./app/build/reports/lint-results-debug.sarif
           category: androidLint
-
-      - uses: ./.github/actions/danger

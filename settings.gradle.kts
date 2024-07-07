@@ -22,3 +22,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "AndroidArchitectureTemplate"
 include(":app")
+include(":feature:feature1")

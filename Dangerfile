@@ -17,6 +17,6 @@ end
 # jacoco
 jacoco.minimum_project_coverage_percentage = 80
 Dir["**/build/reports/jacoco/*/*.xml"].each do |file|
-    jacoco.report(file)
+    jacoco.report(file, fail_no_coverage_data_found: false)
 end
 

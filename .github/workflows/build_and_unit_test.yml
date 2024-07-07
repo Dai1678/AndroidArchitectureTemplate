@@ -21,6 +21,14 @@ jobs:
     timeout-minutes: 30
     permissions:
       security-events: write
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - language: java-kotlin
+            build-mode: autobuild
+          - language: ruby
+            build-mode: none
 
     steps:
       - uses: actions/checkout@v4
@@ -30,10 +38,11 @@ jobs:
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v3
         with:
-          languages: java-kotlin
-          build-mode: manual
+          languages: ${{ matrix.language }}
+          build-mode: ${{ matrix.build-mode }}
 
       - name: set up JDK 17
+        if: matrix.language == 'java-kotlin'
         uses: actions/setup-java@v4.0.0
         with:
           distribution: 'temurin'
@@ -41,31 +50,29 @@ jobs:
           cache: 'gradle'
 
       - name: set up Gradle
+        if: matrix.language == 'java-kotlin'
         uses: gradle/actions/setup-gradle@v3
         with:
           cache-read-only: ${{ github.ref != 'refs/heads/main' }}
 
       - name: Build with Gradle
+        if: matrix.language == 'java-kotlin'
         run: ./gradlew assembleDebug --no-daemon --stacktrace
 
       - name: Run test
+        if: matrix.language == 'java-kotlin'
         run: ./gradlew testDebug --no-daemon --stacktrace
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v3
         with:
-          category: "kotlin"
+          category: "/language:${{matrix.language}}"
 
   androidTest:
     uses: ./.github/workflows/instrumented_test.yml
 
   lint:
     uses: ./.github/workflows/lint_check.yml
-    permissions:
-      security-events: write
-
-  codeql_scan_ruby:
-    uses: ./.github/workflows/ruby_code_scan.yml
     permissions:
       security-events: write
 

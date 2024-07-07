@@ -10,7 +10,7 @@ runs:
   using: "composite"
   steps:
     - name: Validate Gradle Wrapper
-      uses: gradle/wrapper-validation-action@v3
+      uses: gradle/actions/wrapper-validation@v3
 
     - name: Set up JDK ${{ inputs.java-version }}
       uses: actions/setup-java@v4.2.1

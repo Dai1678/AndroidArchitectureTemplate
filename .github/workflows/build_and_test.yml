@@ -28,11 +28,9 @@ jobs:
       - uses: ./.github/actions/setup-java
 
       - name: Build with Gradle
-        if: matrix.language == 'java-kotlin'
         run: ./gradlew assembleDebug --no-daemon --stacktrace
 
       - name: Run test
-        if: matrix.language == 'java-kotlin'
         run: ./gradlew testDebug --no-daemon --stacktrace
 
       - name: Enable KVM group perms

@@ -8,11 +8,11 @@ on:
       - '!.github/workflows/**'
   push:
     branches:
-      - develop
-      - main
+      - 'develop'
+      - 'main'
 
 concurrency:
-  group: ${{ github.head_ref }}
+  group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:

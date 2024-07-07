@@ -1,7 +1,11 @@
 name: Run detekt and androidLint
 
 on:
-  workflow_call:
+  pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   lint:
@@ -13,12 +17,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: set up JDK 17
-        uses: actions/setup-java@v4.2.1
-        with:
-          distribution: 'temurin'
-          java-version: '17'
-          cache: 'gradle'
+      - uses: ./.github/actions/setup-java
 
       - name: Run detekt
         run: ./gradlew detekt --no-daemon
@@ -37,3 +36,5 @@ jobs:
         with:
           sarif_file: ./app/build/reports/lint-results-debug.sarif
           category: androidLint
+
+      - uses: ./.github/actions/danger

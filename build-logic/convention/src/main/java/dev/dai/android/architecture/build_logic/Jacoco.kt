@@ -84,6 +84,7 @@ internal fun Project.configureJacoco(
       )
       reports {
         xml.required.set(true)
+        xml.outputLocation.set(file("$buildDir/reports/jacoco/merge.xml"))
         html.required.set(true)
       }
 

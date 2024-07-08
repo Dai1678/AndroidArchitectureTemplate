@@ -17,8 +17,5 @@ Dir.glob(instrumented_test_dir_pattern) do |file|
 end
 
 # jacoco
-jacoco_report_dir_pattern = "**/build/reports/jacoco/*/*.xml"
 jacoco.minimum_project_coverage_percentage = 80
-Dir.glob(jacoco_report_dir_pattern) do |file|
-    jacoco.report(file, fail_no_coverage_data_found: false)
-end
+jacoco.report("**/build/reports/jacoco/*/*.xml", fail_no_coverage_data_found: false)

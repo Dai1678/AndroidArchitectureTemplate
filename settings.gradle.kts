@@ -23,4 +23,5 @@ dependencyResolutionManagement {
 rootProject.name = "AndroidArchitectureTemplate"
 include(":app")
 include(":core:network")
+include(":core:data")
 include(":feature:feature1")

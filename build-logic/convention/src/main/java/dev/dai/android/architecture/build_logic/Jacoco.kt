@@ -83,8 +83,12 @@ internal fun Project.configureJacoco(
           .matching { exclude(coverageExclusions) },
       )
       reports {
-        xml.required.set(true)
-        xml.outputLocation.set(file("$buildDir/reports/jacoco/merge.xml"))
+        xml.apply {
+          required.set(true)
+          outputLocation.set(
+            file("$buildDir/reports/jacoco/create${variant.name.capitalize()}CombinedCoverageReport/merge.xml")
+          )
+        }
         html.required.set(true)
       }
 

@@ -18,4 +18,4 @@ end
 
 # jacoco
 jacoco.minimum_project_coverage_percentage = 80
-jacoco.report("app/build/reports/jacoco/createDebugCombinedCoverageReport/merge.xml", fail_no_coverage_data_found: false)
+jacoco.report("*/build/reports/jacoco/createDebugCombinedCoverageReport/merge.xml", fail_no_coverage_data_found: false)

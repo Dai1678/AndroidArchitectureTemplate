@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-  namespace = "dev.dai.android.architecture.feature.feature1"
+  namespace = "dev.dai.android.architecture.feature.user"
 }
 
 dependencies {

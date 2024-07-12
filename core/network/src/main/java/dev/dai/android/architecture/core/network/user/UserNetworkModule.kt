@@ -1,4 +1,4 @@
-package dev.dai.android.architecture.core.network.feature1
+package dev.dai.android.architecture.core.network.user
 
 import dagger.Module
 import dagger.Provides
@@ -9,10 +9,10 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object Feature1NetworkModule {
+object UserNetworkModule {
   @Provides
   @Singleton
-  internal fun provideFeature1NetworkDataSource(
+  internal fun provideUserNetworkDataSource(
     retrofit: Retrofit,
-  ): Feature1NetworkDataSource = DefaultFeature1NetworkDataSource(retrofit)
+  ): UserNetworkDataSource = DefaultUserNetworkDataSource(retrofit)
 }

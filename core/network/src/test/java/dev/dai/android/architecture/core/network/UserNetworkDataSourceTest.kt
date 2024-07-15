@@ -2,6 +2,8 @@ package dev.dai.android.architecture.core.network
 
 import dev.dai.android.architecture.core.network.user.FakeUserNetworkDataSource
 import dev.dai.android.architecture.core.network.user.UserNetworkDataSource
+import dev.dai.android.architecture.core.network.user.response.UserResponse
+import dev.dai.android.architecture.core.network.user.response.fake
 import kotlinx.coroutines.test.runTest
 import org.junit.Before
 import kotlin.test.Test
@@ -21,7 +23,16 @@ class UserNetworkDataSourceTest {
   fun testGetUsers() = runTest {
     val data = dataSource.getUsers()
     assertEquals(
-      listOf("Fake data 1", "Fake data 2"),
+      listOf(
+        UserResponse.fake(),
+        UserResponse.fake(
+          id = 2,
+          name = "User2",
+          email = "user2@dev.dai.com",
+          phone = "1234567890",
+          website = "https://dev.dai.com"
+        )
+      ),
       data
     )
   }

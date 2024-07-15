@@ -24,4 +24,5 @@ rootProject.name = "AndroidArchitectureTemplate"
 include(":app")
 include(":core:network")
 include(":core:data")
+include(":core:model")
 include(":feature:user")

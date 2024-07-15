@@ -1,6 +1,5 @@
 plugins {
   alias(libs.plugins.android.architecture.template.android.library)
-  alias(libs.plugins.android.architecture.template.android.library.jacoco)
   alias(libs.plugins.android.architecture.template.android.hilt)
   id("kotlinx-serialization")
 }
@@ -14,6 +13,4 @@ dependencies {
   implementation(libs.okhttp.logging)
   implementation(libs.retrofit.core)
   implementation(libs.retrofit.kotlin.serialization)
-
-  testImplementation(libs.kotlinx.coroutines.test)
 }

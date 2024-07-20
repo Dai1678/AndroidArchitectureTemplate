@@ -12,7 +12,7 @@ dependencies {
   implementation(project(":core:model"))
   implementation(project(":core:network"))
 
-  testImplementation(project(":core:network"))
+  testImplementation(project(":core:test"))
 
   implementation(libs.kotlinx.coroutines.android)
   implementation(libs.kotlinx.coroutines.test)

@@ -1,4 +1,4 @@
-package dev.dai.android.architecture.core.data.fake
+package dev.dai.android.architecture.core.test.datasource
 
 import dev.dai.android.architecture.core.network.user.UserNetworkDataSource
 import dev.dai.android.architecture.core.network.user.response.UserResponse

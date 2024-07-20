@@ -1,9 +1,9 @@
 package dev.dai.android.architecture.core.data
 
-import dev.dai.android.architecture.core.data.fake.FakeUserNetworkDataSource
 import dev.dai.android.architecture.core.data.repository.DefaultUserRepository
 import dev.dai.android.architecture.core.model.User
 import dev.dai.android.architecture.core.model.fake
+import dev.dai.android.architecture.core.test.datasource.FakeUserNetworkDataSource
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
 import org.junit.Before

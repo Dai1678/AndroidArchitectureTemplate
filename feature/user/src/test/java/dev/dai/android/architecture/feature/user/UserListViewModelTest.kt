@@ -16,17 +16,17 @@ import org.junit.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFails
 
-class UserViewModelTest {
+class UserListViewModelTest {
   @get:Rule
   val dispatcherRule = MainDispatcherRule()
 
   private val userRepository = FakeUserRepository()
 
-  private lateinit var viewModel: UserViewModel
+  private lateinit var viewModel: UserListViewModel
 
   @Before
   fun setup() {
-    viewModel = UserViewModel(userRepository)
+    viewModel = UserListViewModel(userRepository)
   }
 
   @Test

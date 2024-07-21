@@ -15,7 +15,7 @@ import kotlinx.coroutines.flow.update
 import javax.inject.Inject
 
 @HiltViewModel
-class UserViewModel @Inject constructor(
+class UserListViewModel @Inject constructor(
   userRepository: UserRepository,
 ) : ViewModel() {
 

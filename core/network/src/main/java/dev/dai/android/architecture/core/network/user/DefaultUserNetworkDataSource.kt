@@ -21,15 +21,13 @@ class DefaultUserNetworkDataSource internal constructor(
     // userApi.getUsers()
     buildList {
       repeat(20) {
-        add(
-          UserResponse.fake(
-            id = it,
-            name = "User$it",
-            email = "user$it@dev.dai.com",
-            phone = "1234567890",
-            website = "https://dev.dai.com",
-          )
-        )
+        UserResponse.fake(
+          id = it,
+          name = "User$it",
+          email = "user$it@dev.dai.com",
+          phone = "1234567890",
+          website = "https://dev.dai.com",
+        ).let { userResponse -> add(userResponse) }
       }
     }
 }

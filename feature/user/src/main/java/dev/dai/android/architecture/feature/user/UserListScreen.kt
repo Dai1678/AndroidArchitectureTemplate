@@ -8,7 +8,9 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.LargeTopAppBar
+import androidx.compose.material3.ListItem
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
@@ -16,11 +18,14 @@ import androidx.compose.runtime.Stable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import dev.dai.android.architecture.core.model.User
+import dev.dai.android.architecture.core.model.fake
+import dev.dai.android.architecture.designsystem.theme.AndroidArchitectureTemplateTheme
 
 const val USER_LIST_SCREEN_ROUTE = "user_list"
 fun NavGraphBuilder.userListScreen() {
@@ -99,12 +104,44 @@ private fun UserList(
         ) {
           items(uiState.users) { user ->
             Column {
-              Text(text = user.name)
-              Text(text = user.email)
+              ListItem(
+                headlineContent = {
+                  Text(text = user.name)
+                },
+                supportingContent = {
+                  Text(text = user.email)
+                },
+              )
             }
           }
         }
       }
+    }
+  }
+}
+
+@PreviewLightDark
+@Composable
+private fun UserListContentPreview() {
+  AndroidArchitectureTemplateTheme {
+    Surface {
+      UserListContent(
+        uiState = UserListContentUiState(
+          userListUiState = UserListUiState.UserList(
+            users = buildList {
+              repeat(20) {
+                User.fake(
+                  id = it,
+                  name = "User$it",
+                  email = "user$it@dev.dai.com",
+                  phone = "1234567890",
+                  website = "https://dev.dai.com",
+                ).let { user -> add(user) }
+              }
+            }
+          )
+        )
+      )
     }
   }
 }

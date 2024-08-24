@@ -11,11 +11,6 @@ android {
 
   defaultConfig {
     applicationId = "dev.dai.android.architecture.template"
-
-    testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-    vectorDrawables {
-      useSupportLibrary = true
-    }
   }
 
   buildTypes {

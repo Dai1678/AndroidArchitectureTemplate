@@ -1,7 +1,7 @@
 package dev.dai.android.architecture.feature.user
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -90,7 +90,7 @@ internal sealed interface UserListUiState {
 private fun UserList(
   uiState: UserListUiState,
   modifier: Modifier = Modifier,
-  onUserClick: (userId: String) -> Unit,
+  onUserClick: (userId: Int) -> Unit,
 ) {
   Box(modifier = modifier.fillMaxSize()) {
     when (uiState) {
@@ -103,16 +103,17 @@ private fun UserList(
           modifier = Modifier.fillMaxSize()
         ) {
           items(uiState.users) { user ->
-            Column {
-              ListItem(
-                headlineContent = {
-                  Text(text = user.name)
-                },
-                supportingContent = {
-                  Text(text = user.email)
-                },
-              )
-            }
+            ListItem(
+              headlineContent = {
+                Text(text = user.name)
+              },
+              supportingContent = {
+                Text(text = user.email)
+              },
+              modifier = Modifier.clickable {
+                onUserClick(user.id)
+              }
+            )
           }
         }
       }
@@ -129,7 +130,8 @@ private fun UserListContentPreview() {
         uiState = UserListContentUiState(
           userListUiState = UserListUiState.UserList(
             users = buildList {
-              repeat(20) {
+              val userListSize = 20
+              repeat(userListSize) {
                 User.fake(
                   id = it,
                   name = "User$it",

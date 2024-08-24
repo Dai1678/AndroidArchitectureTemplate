@@ -122,6 +122,8 @@ private fun UserList(
   }
 }
 
+private const val PREVIEW_USER_LIST_SIZE = 20
+
 @PreviewLightDark
 @Composable
 private fun UserListContentPreview() {
@@ -131,8 +133,7 @@ private fun UserListContentPreview() {
         uiState = UserListContentUiState(
           userListUiState = UserListUiState.UserList(
             users = buildList {
-              val userListSize = 20
-              repeat(userListSize) {
+              repeat(PREVIEW_USER_LIST_SIZE) {
                 User.fake(
                   id = it,
                   name = "User$it",

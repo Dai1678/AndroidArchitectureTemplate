@@ -16,7 +16,16 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.navigation.NavGraphBuilder
+import androidx.navigation.compose.composable
 import dev.dai.android.architecture.core.model.User
+
+const val USER_LIST_SCREEN_ROUTE = "user_list"
+fun NavGraphBuilder.userListScreen() {
+  composable(route = USER_LIST_SCREEN_ROUTE) {
+    UserListScreen()
+  }
+}
 
 @Composable
 fun UserListScreen(

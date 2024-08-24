@@ -13,6 +13,10 @@ android {
     applicationId = "dev.dai.android.architecture.template"
   }
 
+  buildFeatures {
+    buildConfig = true
+  }
+
   buildTypes {
     debug {
       applicationIdSuffix = ".debug"
@@ -33,6 +37,7 @@ android {
 
 dependencies {
   implementation(project(":feature:user"))
+  implementation(project(":core:model"))
   implementation(project(":core:network"))
   implementation(project(":core:designsystem"))
 

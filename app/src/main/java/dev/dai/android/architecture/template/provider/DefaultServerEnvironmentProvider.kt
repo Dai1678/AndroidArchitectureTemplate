@@ -1,4 +1,4 @@
-package dev.dai.android.architecture.template.env
+package dev.dai.android.architecture.template.provider
 
 import dev.dai.android.architecture.core.network.provider.ServerEnvironmentProvider
 import javax.inject.Inject

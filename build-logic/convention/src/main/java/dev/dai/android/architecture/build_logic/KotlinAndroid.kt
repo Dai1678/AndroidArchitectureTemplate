@@ -4,6 +4,7 @@ import com.android.build.api.dsl.CommonExtension
 import org.gradle.api.JavaVersion
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
+import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.provideDelegate
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.dsl.KotlinAndroidProjectExtension
@@ -19,6 +20,7 @@ internal fun Project.configureKotlinAndroid(
 
     defaultConfig {
       minSdk = 28
+      testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     compileOptions {
@@ -37,5 +39,10 @@ internal fun Project.configureKotlinAndroid(
         "-opt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
       )
     }
+  }
+
+  dependencies {
+    // Required for emulator startup by AndroidJUnitRunner in instrumented tests
+    add("androidTestImplementation", libs.findLibrary("androidx-test-espresso-core").get())
   }
 }

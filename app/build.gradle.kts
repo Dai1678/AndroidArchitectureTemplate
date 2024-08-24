@@ -11,11 +11,10 @@ android {
 
   defaultConfig {
     applicationId = "dev.dai.android.architecture.template"
+  }
 
-    testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-    vectorDrawables {
-      useSupportLibrary = true
-    }
+  buildFeatures {
+    buildConfig = true
   }
 
   buildTypes {
@@ -37,6 +36,11 @@ android {
 }
 
 dependencies {
+  implementation(project(":feature:user"))
+  implementation(project(":core:model"))
+  implementation(project(":core:network"))
+  implementation(project(":core:designsystem"))
+
   implementation(libs.androidx.activity.compose)
   implementation(libs.androidx.core.ktx)
   implementation(libs.androidx.hilt.navigation.compose)
@@ -47,15 +51,5 @@ dependencies {
 
   ksp(libs.hilt.compiler)
 
-  kspTest(libs.hilt.compiler)
-
-  testImplementation(libs.hilt.android.testing)
-  testImplementation(libs.robolectric)
-
-  androidTestImplementation(kotlin("test"))
-  androidTestImplementation(libs.androidx.test.espresso.core)
-  androidTestImplementation(libs.androidx.navigation.testing)
   androidTestImplementation(libs.androidx.test.ext)
-
-  androidTestImplementation(libs.hilt.android.testing)
 }

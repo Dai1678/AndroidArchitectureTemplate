@@ -23,6 +23,7 @@ private val coverageExclusions = listOf(
   "**/Manifest*.*",
   "**/*_Hilt*.class",
   "**/Hilt_*.class",
+  "**/*Module.*",
   "**/*Test*.*",
   "android/**/*.*",
   "androidx/**/*.*",

@@ -5,6 +5,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import dev.dai.android.architecture.core.network.provider.ServerEnvironmentProvider
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonNamingStrategy
@@ -56,10 +57,11 @@ internal object RetrofitModule {
   fun provideRetrofit(
     okHttpClient: OkHttpClient,
     networkJson: Json,
+    serverEnvironmentProvider: ServerEnvironmentProvider,
   ): Retrofit {
     return Retrofit.Builder()
       .client(okHttpClient)
-      .baseUrl("") // TODO: set base url by BuildConfig
+      .baseUrl(serverEnvironmentProvider.baseUrl())
       .addConverterFactory(networkJson.asConverterFactory("application/json".toMediaType()))
       .build()
   }

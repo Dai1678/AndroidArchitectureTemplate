@@ -37,6 +37,9 @@ android {
 }
 
 dependencies {
+  implementation(project(":feature:user"))
+  implementation(project(":core:network"))
+
   implementation(libs.androidx.activity.compose)
   implementation(libs.androidx.core.ktx)
   implementation(libs.androidx.hilt.navigation.compose)

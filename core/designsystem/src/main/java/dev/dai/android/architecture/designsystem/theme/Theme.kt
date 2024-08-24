@@ -1,4 +1,4 @@
-package dev.dai.android.architecture.template.ui.theme
+package dev.dai.android.architecture.designsystem.theme
 
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme

@@ -9,8 +9,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import dagger.hilt.android.AndroidEntryPoint
+import dev.dai.android.architecture.designsystem.theme.AndroidArchitectureTemplateTheme
 import dev.dai.android.architecture.template.ui.AppNavHost
-import dev.dai.android.architecture.template.ui.theme.AndroidArchitectureTemplateTheme
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {

@@ -30,6 +30,7 @@ kotlinxCoroutines = "1.8.1"
 kotlinxDatetime = "0.6.0"
 kotlinxSerializationJson = "1.7.1"
 ksp = "2.0.10-1.0.24"
+kover = "0.8.3"
 mockk = "1.13.12"
 okhttp = "4.12.0"
 retrofit = "2.11.0"
@@ -94,6 +95,7 @@ firebase-crashlytics-gradlePlugin = { group = "com.google.firebase", name = "fir
 firebase-performance-gradlePlugin = { group = "com.google.firebase", name = "perf-plugin", version.ref = "firebasePerfPlugin" }
 kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
 ksp-gradlePlugin = { group = "com.google.devtools.ksp", name = "com.google.devtools.ksp.gradle.plugin", version.ref = "ksp" }
+kover-gradlePugin = { group = "org.jetbrains.kotlinx", name = "kover-gradle-plugin", version.ref = "kover" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
@@ -107,6 +109,7 @@ gms = { id = "com.google.gms.google-services", version.ref = "gmsPlugin" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover" }
 
 # Plugins defined by this project
 android-architecture-template-android-application = { id = "android.architecture.template.android.application", version = "unspecified" }
@@ -120,3 +123,4 @@ android-architecture-template-android-library-compose = { id = "android.architec
 android-architecture-template-android-library-jacoco = { id = "android.architecture.template.android.library.jacoco", version = "unspecified" }
 android-architecture-template-android-test = { id = "android.architecture.template.android.test", version = "unspecified" }
 android-architecture-template-detekt = { id = "android.architecture.template.detekt", version = "unspecified" }
+android-architecture-template-kover = { id = "android.architecture.template.kover", version = "unspecified" }

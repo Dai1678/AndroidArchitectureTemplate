@@ -24,6 +24,7 @@ dependencies {
   compileOnly(libs.firebase.performance.gradlePlugin)
   compileOnly(libs.kotlin.gradlePlugin)
   compileOnly(libs.ksp.gradlePlugin)
+  compileOnly(libs.kover.gradlePugin)
 }
 
 gradlePlugin {
@@ -67,6 +68,10 @@ gradlePlugin {
     register("detekt") {
       id = "android.architecture.template.detekt"
       implementationClass = "DetektConventionPlugin"
+    }
+    register("kover") {
+      id = "android.architecture.template.kover"
+      implementationClass = "KoverConventionPlugin"
     }
   }
 }

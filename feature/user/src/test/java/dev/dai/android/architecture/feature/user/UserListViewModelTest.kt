@@ -47,15 +47,17 @@ class UserListViewModelTest {
     )
 
     assertEquals(
-      UserUiState(
-        users = listOf(
-          User.fake(),
-          User.fake(
-            id = 2,
-            name = "User2",
-            email = "user2@dev.dai.com",
-            phone = "1234567890",
-            website = "https://dev.dai.com",
+      UserListContentUiState(
+        userListUiState = UserListUiState.UserList(
+          users = listOf(
+            User.fake(),
+            User.fake(
+              id = 2,
+              name = "User2",
+              email = "user2@dev.dai.com",
+              phone = "1234567890",
+              website = "https://dev.dai.com",
+            )
           )
         ),
       ),
@@ -75,7 +77,11 @@ class UserListViewModelTest {
     }
 
     assertEquals(
-      UserUiState(),
+      UserListContentUiState(
+        userListUiState = UserListUiState.UserList(
+          users = emptyList()
+        )
+      ),
       viewModel.uiState.value
     )
   }

@@ -5,10 +5,11 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.dai.android.architecture.core.data.repository.UserRepository
 import dev.dai.android.architecture.core.model.User
+import dev.dai.android.architecture.ui.STOP_TIMEOUT_MILLIS
+import dev.dai.android.architecture.ui.buildUiState
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import javax.inject.Inject
 
@@ -17,21 +18,31 @@ class UserListViewModel @Inject constructor(
   userRepository: UserRepository,
 ) : ViewModel() {
 
-  val uiState: StateFlow<UserUiState> =
+  private val usersStateFlow =
     userRepository.users
-      .map { users ->
-        UserUiState(
-          users = users,
-        )
-      }.catch { error ->
-        // TODO
-      }.stateIn(
-        viewModelScope,
-        SharingStarted.WhileSubscribed(5_000),
-        UserUiState(),
+      .catch {
+        // TODO Handle error
+        emit(emptyList())
+      }
+      .stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(STOP_TIMEOUT_MILLIS),
+        initialValue = null,
       )
-}
 
-data class UserUiState(
-  val users: List<User> = emptyList(),
-)
+  internal val uiState: StateFlow<UserListContentUiState> = buildUiState(
+    usersStateFlow,
+  ) { users ->
+    UserListContentUiState(buildUserListUiState(users))
+  }
+
+  private fun buildUserListUiState(users: List<User>?): UserListUiState {
+    return if (users == null) {
+      UserListUiState.Loading
+    } else {
+      UserListUiState.UserList(
+        users = users,
+      )
+    }
+  }
+}

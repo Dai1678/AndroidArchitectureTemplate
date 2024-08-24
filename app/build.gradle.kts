@@ -50,4 +50,6 @@ dependencies {
   implementation(libs.coil.kt.compose)
 
   ksp(libs.hilt.compiler)
+
+  androidTestImplementation(libs.androidx.test.ext)
 }

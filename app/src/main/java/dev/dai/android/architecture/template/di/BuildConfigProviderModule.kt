@@ -2,12 +2,13 @@ package dev.dai.android.architecture.template.di
 
 import dagger.Binds
 import dagger.Module
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import dev.dai.android.architecture.core.model.provider.BuildConfigProvider
 import dev.dai.android.architecture.template.provider.DefaultBuildConfigProvider
-import javax.inject.Singleton
 
 @Module
-@Singleton
+@InstallIn(SingletonComponent::class)
 abstract class BuildConfigProviderModule {
   @Binds
   abstract fun bindBuildConfigProvider(

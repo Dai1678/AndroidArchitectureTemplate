@@ -24,6 +24,7 @@ dependencies {
   compileOnly(libs.firebase.performance.gradlePlugin)
   compileOnly(libs.kotlin.gradlePlugin)
   compileOnly(libs.ksp.gradlePlugin)
+  compileOnly(libs.kover.gradlePugin)
 }
 
 gradlePlugin {
@@ -40,10 +41,6 @@ gradlePlugin {
       id = "android.architecture.template.android.application"
       implementationClass = "AndroidApplicationConventionPlugin"
     }
-    register("androidApplicationJacoco") {
-      id = "android.architecture.template.android.application.jacoco"
-      implementationClass = "AndroidApplicationJacocoConventionPlugin"
-    }
     register("androidLibraryCompose") {
       id = "android.architecture.template.android.library.compose"
       implementationClass = "AndroidLibraryComposeConventionPlugin"
@@ -56,10 +53,6 @@ gradlePlugin {
       id = "android.architecture.template.android.feature"
       implementationClass = "AndroidFeatureConventionPlugin"
     }
-    register("androidLibraryJacoco") {
-      id = "android.architecture.template.android.library.jacoco"
-      implementationClass = "AndroidLibraryJacocoConventionPlugin"
-    }
     register("androidHilt") {
       id = "android.architecture.template.android.hilt"
       implementationClass = "AndroidHiltConventionPlugin"
@@ -67,6 +60,10 @@ gradlePlugin {
     register("detekt") {
       id = "android.architecture.template.detekt"
       implementationClass = "DetektConventionPlugin"
+    }
+    register("kover") {
+      id = "android.architecture.template.kover"
+      implementationClass = "KoverConventionPlugin"
     }
   }
 }

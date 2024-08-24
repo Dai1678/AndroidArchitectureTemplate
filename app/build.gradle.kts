@@ -2,8 +2,8 @@ plugins {
   alias(libs.plugins.android.architecture.template.android.application)
   alias(libs.plugins.android.architecture.template.android.application.compose)
   alias(libs.plugins.android.architecture.template.android.application.firebase)
-  alias(libs.plugins.android.architecture.template.android.application.jacoco)
   alias(libs.plugins.android.architecture.template.android.hilt)
+  alias(libs.plugins.android.architecture.template.kover)
 }
 
 android {
@@ -36,10 +36,10 @@ android {
 }
 
 dependencies {
-  implementation(project(":feature:user"))
+  implementation(project(":core:designsystem"))
   implementation(project(":core:model"))
   implementation(project(":core:network"))
-  implementation(project(":core:designsystem"))
+  implementation(project(":feature:user"))
 
   implementation(libs.androidx.activity.compose)
   implementation(libs.androidx.core.ktx)

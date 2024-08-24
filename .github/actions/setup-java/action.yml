@@ -1,0 +1,25 @@
+name: Setup JDK
+description: 'Setup JDK and gradle caching'
+
+inputs:
+  java-version:
+    description: "Java version"
+    default: "17"
+
+runs:
+  using: "composite"
+  steps:
+    - name: Validate Gradle Wrapper
+      uses: gradle/actions/wrapper-validation@v3
+
+    - name: Set up JDK ${{ inputs.java-version }}
+      uses: actions/setup-java@v4.2.1
+      with:
+        distribution: 'temurin'
+        java-version: ${{ inputs.java-version }}
+        cache: 'gradle'
+
+    - name: set up Gradle
+      uses: gradle/actions/setup-gradle@v3
+      with:
+        cache-read-only: ${{ github.ref != 'refs/heads/main' }}

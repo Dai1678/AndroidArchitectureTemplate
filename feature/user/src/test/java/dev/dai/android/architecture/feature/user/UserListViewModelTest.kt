@@ -1,44 +1,37 @@
 package dev.dai.android.architecture.feature.user
 
+import dev.dai.android.architecture.core.data.repository.UserRepository
 import dev.dai.android.architecture.core.model.User
 import dev.dai.android.architecture.core.model.fake
 import dev.dai.android.architecture.core.test.MainDispatcherRule
 import dev.dai.android.architecture.core.test.repository.FakeUserRepository
-import junit.framework.TestCase.assertTrue
+import io.mockk.coEvery
+import io.mockk.junit4.MockKRule
+import io.mockk.mockk
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.runTest
-import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import java.util.concurrent.TimeoutException
 import kotlin.test.assertEquals
-import kotlin.test.assertFails
 
 class UserListViewModelTest {
   @get:Rule
   val dispatcherRule = MainDispatcherRule()
 
-  private val userRepository = FakeUserRepository()
-
-  private lateinit var viewModel: UserListViewModel
-
-  @Before
-  fun setup() {
-    viewModel = UserListViewModel(userRepository)
-  }
+  @get:Rule
+  val mockRule = MockKRule(this)
 
   @Test
-  fun `state has users`() = runTest {
+  fun `Has users`() = runTest {
+    val userRepository = FakeUserRepository()
+    val viewModel = UserListViewModel(userRepository)
     backgroundScope.launch(UnconfinedTestDispatcher(testScheduler)) {
       viewModel.uiState.collect()
     }
-
-    assertEquals(
-      UserUiState.NoUsers(isLoading = true, event = null),
-      viewModel.uiState.value
-    )
 
     userRepository.emitUser(
       listOf(
@@ -54,8 +47,7 @@ class UserListViewModelTest {
     )
 
     assertEquals(
-      UserUiState.HasUsers(
-        isLoading = false,
+      UserUiState(
         users = listOf(
           User.fake(),
           User.fake(
@@ -66,40 +58,25 @@ class UserListViewModelTest {
             website = "https://dev.dai.com",
           )
         ),
-        event = null
       ),
       viewModel.uiState.value
     )
   }
 
   @Test
-  fun `fetch users failed`() = runTest {
-    userRepository.setup(isError = true)
+  fun `Fetch users failed`() = runTest {
+    val exception = TimeoutException()
+    val userRepository = mockk<UserRepository> {
+      coEvery { users } returns flow { throw exception }
+    }
+    val viewModel = UserListViewModel(userRepository)
     backgroundScope.launch(UnconfinedTestDispatcher(testScheduler)) {
       viewModel.uiState.collect()
     }
 
     assertEquals(
-      UserUiState.NoUsers(isLoading = true, event = null),
+      UserUiState(),
       viewModel.uiState.value
     )
-
-    userRepository.emitUser(
-      listOf(
-        User.fake(),
-        User.fake(
-          id = 2,
-          name = "User2",
-          email = "user2@dev.dai.com",
-          phone = "1234567890",
-          website = "https://dev.dai.com",
-        )
-      )
-    )
-
-    assertFails {
-      userRepository.users.first()
-    }
-    assertTrue(viewModel.uiState.value is UserUiState.EmptyError)
   }
 }

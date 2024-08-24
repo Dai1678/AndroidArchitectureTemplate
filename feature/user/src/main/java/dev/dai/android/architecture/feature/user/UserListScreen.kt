@@ -10,10 +10,12 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.LargeTopAppBar
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavGraphBuilder
@@ -51,16 +53,21 @@ private fun UserListContent(
   uiState: UserListContentUiState,
   modifier: Modifier = Modifier,
 ) {
+  val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
   Scaffold(
     topBar = {
       LargeTopAppBar(
         title = { Text(text = "ユーザー") },
+        scrollBehavior = scrollBehavior,
       )
     }
   ) { innerPadding ->
     UserList(
       uiState = uiState.userListUiState,
-      modifier = modifier.padding(innerPadding),
+      modifier = modifier
+        .fillMaxSize()
+        .padding(innerPadding)
+        .nestedScroll(scrollBehavior.nestedScrollConnection),
       onUserClick = {}
     )
   }

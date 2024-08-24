@@ -41,10 +41,6 @@ gradlePlugin {
       id = "android.architecture.template.android.application"
       implementationClass = "AndroidApplicationConventionPlugin"
     }
-    register("androidApplicationJacoco") {
-      id = "android.architecture.template.android.application.jacoco"
-      implementationClass = "AndroidApplicationJacocoConventionPlugin"
-    }
     register("androidLibraryCompose") {
       id = "android.architecture.template.android.library.compose"
       implementationClass = "AndroidLibraryComposeConventionPlugin"
@@ -56,10 +52,6 @@ gradlePlugin {
     register("androidFeature") {
       id = "android.architecture.template.android.feature"
       implementationClass = "AndroidFeatureConventionPlugin"
-    }
-    register("androidLibraryJacoco") {
-      id = "android.architecture.template.android.library.jacoco"
-      implementationClass = "AndroidLibraryJacocoConventionPlugin"
     }
     register("androidHilt") {
       id = "android.architecture.template.android.hilt"

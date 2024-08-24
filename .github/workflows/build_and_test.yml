@@ -72,8 +72,8 @@ jobs:
           disable-animations: true
           script: ./gradlew connectedCheck --no-daemon --stacktrace
 
-      - name: Run jacoco coverage report
-        run: ./gradlew createDebugCombinedCoverageReport --no-daemon --stacktrace
+      - name: Run kover coverage report
+        run: ./gradlew koverXmlReport --no-daemon --stacktrace
 
       - name: Setup ruby
         uses: ruby/setup-ruby@v1

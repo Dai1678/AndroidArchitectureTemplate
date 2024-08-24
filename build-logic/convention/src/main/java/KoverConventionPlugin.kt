@@ -21,6 +21,7 @@ class KoverConventionPlugin : Plugin<Project> {
       configure<KoverProjectExtension> {
         reports {
           filters {
+            includes.packages("dev.dai.android.architecture.*")
             excludes {
               packages(
                 "dagger.hilt.*",

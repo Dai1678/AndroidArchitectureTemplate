@@ -1,6 +1,5 @@
 plugins {
   alias(libs.plugins.android.architecture.template.android.library)
-  alias(libs.plugins.android.architecture.template.android.library.jacoco)
   alias(libs.plugins.android.architecture.template.android.hilt)
 }
 

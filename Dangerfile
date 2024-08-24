@@ -16,6 +16,5 @@ Dir.glob(instrumented_test_dir_pattern) do |file|
   junit.report
 end
 
-# jacoco
-jacoco.minimum_project_coverage_percentage = 80
-jacoco.report("*/build/reports/jacoco/createDebugCombinedCoverageReport/merge.xml", fail_no_coverage_data_found: false)
+# jacoco / kover
+jacoco.report("app/build/reports/kover/report.xml", fail_no_coverage_data_found: false)

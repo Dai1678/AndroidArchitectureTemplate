@@ -24,7 +24,6 @@ googleOss = "17.1.0"
 googleOssPlugin = "0.10.6"
 hilt = "2.52"
 hiltExt = "1.2.0"
-jacoco = "0.8.7" # used in /build_logic/Jacoco.kt
 kotlin = "2.0.10"
 kotlinxCoroutines = "1.8.1"
 kotlinxDatetime = "0.6.0"
@@ -115,12 +114,10 @@ kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover" }
 android-architecture-template-android-application = { id = "android.architecture.template.android.application", version = "unspecified" }
 android-architecture-template-android-application-compose = { id = "android.architecture.template.android.application.compose", version = "unspecified" }
 android-architecture-template-android-application-firebase = { id = "android.architecture.template.android.application.firebase", version = "unspecified" }
-android-architecture-template-android-application-jacoco = { id = "android.architecture.template.android.application.jacoco", version = "unspecified" }
 android-architecture-template-android-feature = { id = "android.architecture.template.android.feature", version = "unspecified" }
 android-architecture-template-android-hilt = { id = "android.architecture.template.android.hilt", version = "unspecified" }
 android-architecture-template-android-library = { id = "android.architecture.template.android.library", version = "unspecified" }
 android-architecture-template-android-library-compose = { id = "android.architecture.template.android.library.compose", version = "unspecified" }
-android-architecture-template-android-library-jacoco = { id = "android.architecture.template.android.library.jacoco", version = "unspecified" }
 android-architecture-template-android-test = { id = "android.architecture.template.android.test", version = "unspecified" }
 android-architecture-template-detekt = { id = "android.architecture.template.detekt", version = "unspecified" }
 android-architecture-template-kover = { id = "android.architecture.template.kover", version = "unspecified" }

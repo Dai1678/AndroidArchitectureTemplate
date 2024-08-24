@@ -25,6 +25,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import dev.dai.android.architecture.core.model.User
 import dev.dai.android.architecture.core.model.fake
+import dev.dai.android.architecture.designsystem.component.LoadingContent
 import dev.dai.android.architecture.designsystem.theme.AndroidArchitectureTemplateTheme
 
 const val USER_LIST_SCREEN_ROUTE = "user_list"
@@ -95,7 +96,7 @@ private fun UserList(
   Box(modifier = modifier.fillMaxSize()) {
     when (uiState) {
       UserListUiState.Loading -> {
-        // TODO() LoadingContent
+        LoadingContent()
       }
 
       is UserListUiState.UserList -> {

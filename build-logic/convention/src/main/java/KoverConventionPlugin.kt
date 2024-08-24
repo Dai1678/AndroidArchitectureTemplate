@@ -40,6 +40,8 @@ class KoverConventionPlugin : Plugin<Project> {
                 "*Provider",
                 "*NavHostKt",
                 "*Activity*",
+                "ComposableSingletons*",
+                "*ScreenKt*",
               )
               androidGeneratedClasses()
             }

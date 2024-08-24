@@ -46,16 +46,4 @@ dependencies {
   implementation(libs.coil.kt.compose)
 
   ksp(libs.hilt.compiler)
-
-  kspTest(libs.hilt.compiler)
-
-  testImplementation(libs.hilt.android.testing)
-  testImplementation(libs.robolectric)
-
-  androidTestImplementation(kotlin("test"))
-  androidTestImplementation(libs.androidx.test.espresso.core)
-  androidTestImplementation(libs.androidx.navigation.testing)
-  androidTestImplementation(libs.androidx.test.ext)
-
-  androidTestImplementation(libs.hilt.android.testing)
 }

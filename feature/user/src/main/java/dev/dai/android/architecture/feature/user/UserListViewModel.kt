@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.dai.android.architecture.core.data.repository.UserRepository
 import dev.dai.android.architecture.core.model.User
+import dev.dai.android.architecture.template.common.runExceptionCatching
 import dev.dai.android.architecture.ui.STOP_TIMEOUT_MILLIS
 import dev.dai.android.architecture.ui.UserMessageStateHolder
 import dev.dai.android.architecture.ui.buildUiState
@@ -49,7 +50,7 @@ class UserListViewModel @Inject constructor(
   fun refresh() {
     viewModelScope.launch {
       isRefresh.update { true }
-      runCatching {
+      runExceptionCatching {
         userRepository.refresh()
       }.fold(
         onSuccess = {

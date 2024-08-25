@@ -1,7 +1,7 @@
 package dev.dai.android.architecture.core.network.service
 
 import dev.dai.android.architecture.core.model.AppError
-import kotlinx.coroutines.TimeoutCancellationException
+import dev.dai.android.architecture.template.common.runExceptionCatching
 import retrofit2.HttpException
 import java.net.SocketTimeoutException
 import java.net.UnknownHostException
@@ -11,11 +11,12 @@ class NetworkService {
   @Suppress("SwallowedException, TooGenericExceptionCaught")
   inline operator fun <reified T : Any> invoke(
     block: () -> T,
-  ): T = try {
+  ): T = runExceptionCatching {
     block()
-  } catch (e: Throwable) {
-    throw e.toAppError()
-  }
+  }.fold(
+    onSuccess = { it },
+    onFailure = { throw it.toAppError() },
+  )
 }
 
 @Suppress("MagicNumber")
@@ -31,7 +32,6 @@ fun Throwable.toAppError(): AppError {
     }
 
     is TimeoutException,
-    is TimeoutCancellationException,
     is SocketTimeoutException,
     is UnknownHostException,
     -> AppError.RequestErrorException(this)

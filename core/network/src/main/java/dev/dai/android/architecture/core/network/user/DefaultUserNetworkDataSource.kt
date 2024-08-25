@@ -5,6 +5,7 @@ import dev.dai.android.architecture.core.network.user.response.UserResponse
 import dev.dai.android.architecture.core.network.user.response.fake
 import kotlinx.coroutines.delay
 import retrofit2.Retrofit
+import java.io.IOException
 import kotlin.random.Random
 
 //private interface UserApi {
@@ -37,7 +38,7 @@ class DefaultUserNetworkDataSource internal constructor(
           }
         }
       } else {
-        throw Exception("Network error")
+        throw IOException("Network error")
       }
     }
   }

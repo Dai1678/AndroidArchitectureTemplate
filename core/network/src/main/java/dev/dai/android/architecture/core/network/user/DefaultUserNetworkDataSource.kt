@@ -5,6 +5,7 @@ import dev.dai.android.architecture.core.network.user.response.UserResponse
 import dev.dai.android.architecture.core.network.user.response.fake
 import kotlinx.coroutines.delay
 import retrofit2.Retrofit
+import kotlin.random.Random
 
 //private interface UserApi {
 //  @GET("/users")
@@ -20,18 +21,23 @@ class DefaultUserNetworkDataSource internal constructor(
 
   override suspend fun getUsers(): List<UserResponse> {
     return networkService {
-      // userApi.getUsers()
       delay(SIMULATE_NETWORK_DELAY_MILLIS)
-      buildList {
-        repeat(USER_RESPONSE_SIZE) {
-          UserResponse.fake(
-            id = it,
-            name = "User$it",
-            email = "user$it@dev.dai.com",
-            phone = "1234567890",
-            website = "https://dev.dai.com",
-          ).let { userResponse -> add(userResponse) }
+      // Simulate network success or error
+      if (Random.nextBoolean()) {
+        // userApi.getUsers()
+        buildList {
+          repeat(USER_RESPONSE_SIZE) {
+            UserResponse.fake(
+              id = it,
+              name = "User$it",
+              email = "user$it@dev.dai.com",
+              phone = "1234567890",
+              website = "https://dev.dai.com",
+            ).let { userResponse -> add(userResponse) }
+          }
         }
+      } else {
+        throw Exception("Network error")
       }
     }
   }

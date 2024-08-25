@@ -13,6 +13,7 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.stateIn
 import javax.inject.Inject
+import dev.dai.android.architecture.ui.R as UiR
 
 @HiltViewModel
 class UserListViewModel @Inject constructor(
@@ -23,11 +24,10 @@ class UserListViewModel @Inject constructor(
   private val usersStateFlow =
     userRepository.users
       .handleErrorAndRetry(
-        actionLabelResId = null, // TODO retry strings resource id
+        actionLabelResId = UiR.string.label_retry_get,
         userMessageStateHolder = userMessageStateHolder,
-      ) {
-        emit(emptyList())
-      }
+        fallbackValue = emptyList(),
+      )
       .stateIn(
         scope = viewModelScope,
         started = SharingStarted.WhileSubscribed(STOP_TIMEOUT_MILLIS),

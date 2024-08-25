@@ -73,10 +73,8 @@ class UserMessageStateHolderImpl : UserMessageStateHolder {
     val messages = _messageUiState.userMessages.toMutableList()
     messages.indexOfFirst { it.id == messageId }.let { userMessageIndex ->
       if (userMessageIndex == -1) return@let
-      messages.set(
-        userMessageIndex,
-        messages[userMessageIndex].copy(userMessageResult = userMessageResult),
-      )
+      messages[userMessageIndex] =
+        messages[userMessageIndex].copy(userMessageResult = userMessageResult)
     }
     _messageUiState = _messageUiState.copy(userMessages = messages)
   }
@@ -90,6 +88,7 @@ class UserMessageStateHolderImpl : UserMessageStateHolder {
     val newMessage = UserMessage(message, actionLabelResId = actionLabelResId, duration = duration)
     messages.add(newMessage)
     _messageUiState = _messageUiState.copy(userMessages = messages)
+
     val messageResult = snapshotFlow {
       _messageUiState
     }.filter { messageState ->
@@ -99,14 +98,11 @@ class UserMessageStateHolderImpl : UserMessageStateHolder {
       } ?: false
     }
       .map { messageState ->
-        val userMessage =
-          checkNotNull(messageState.userMessages.find { it.id == newMessage.id })
-        checkNotNull(
-          userMessage
-            .userMessageResult,
-        )
+        val userMessage = checkNotNull(messageState.userMessages.find { it.id == newMessage.id })
+        checkNotNull(userMessage.userMessageResult)
       }
       .first()
+
     val newMessages = _messageUiState.userMessages.toMutableList()
     newMessages.find { it.id == newMessage.id }?.let { userMessage ->
       newMessages.remove(userMessage)

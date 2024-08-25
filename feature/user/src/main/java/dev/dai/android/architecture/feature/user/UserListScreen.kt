@@ -10,6 +10,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.LargeTopAppBar
 import androidx.compose.material3.ListItem
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -53,6 +54,7 @@ fun UserListScreen(
 
   UserListContent(
     uiState = uiState,
+    snackbarHostState = snackbarHostState,
     modifier = modifier,
   )
 }
@@ -66,10 +68,12 @@ internal data class UserListContentUiState(
 @Composable
 private fun UserListContent(
   uiState: UserListContentUiState,
+  snackbarHostState: SnackbarHostState,
   modifier: Modifier = Modifier,
 ) {
   val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
   Scaffold(
+    snackbarHost = { SnackbarHost(snackbarHostState) },
     topBar = {
       LargeTopAppBar(
         title = { Text(text = "ユーザー") },
@@ -153,7 +157,8 @@ private fun UserListContentPreview() {
               }
             }
           )
-        )
+        ),
+        snackbarHostState = SnackbarHostState(),
       )
     }
   }

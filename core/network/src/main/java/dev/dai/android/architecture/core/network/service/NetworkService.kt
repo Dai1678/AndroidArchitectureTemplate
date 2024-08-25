@@ -8,6 +8,7 @@ import java.net.UnknownHostException
 import java.util.concurrent.TimeoutException
 
 class NetworkService {
+  @Suppress("SwallowedException, TooGenericExceptionCaught")
   inline operator fun <reified T : Any> invoke(
     block: () -> T,
   ): T = try {
@@ -17,17 +18,15 @@ class NetworkService {
   }
 }
 
+@Suppress("MagicNumber")
 fun Throwable.toAppError(): AppError {
   return when (this) {
     is AppError -> this
     is HttpException -> when (this.code()) {
-      400 -> AppError.BadRequestException(this)
       401 -> AppError.UnauthorizedException(this)
-      403 -> AppError.ForbiddenException(this)
-      408 -> AppError.RequestTimeoutException(this)
-      409 -> AppError.ConflictException(this)
-      500 -> AppError.ServerErrorException(this)
+      in 400..499 -> AppError.RequestErrorException(this)
       503 -> AppError.ServiceUnavailableException(this)
+      in 500..599 -> AppError.ServerErrorException(this)
       else -> AppError.UnknownException(this)
     }
 
@@ -35,7 +34,7 @@ fun Throwable.toAppError(): AppError {
     is TimeoutCancellationException,
     is SocketTimeoutException,
     is UnknownHostException,
-    -> AppError.RequestTimeoutException(this)
+    -> AppError.RequestErrorException(this)
 
     else -> AppError.UnknownException(this)
   }

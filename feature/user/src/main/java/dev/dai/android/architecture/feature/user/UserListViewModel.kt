@@ -16,7 +16,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class UserListViewModel @Inject constructor(
-  userMessageStateHolder: UserMessageStateHolder,
+  val userMessageStateHolder: UserMessageStateHolder,
   userRepository: UserRepository,
 ) : ViewModel(), UserMessageStateHolder by userMessageStateHolder {
 

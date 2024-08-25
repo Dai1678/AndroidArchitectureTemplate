@@ -5,6 +5,7 @@ import dev.dai.android.architecture.core.model.User
 import dev.dai.android.architecture.core.model.fake
 import dev.dai.android.architecture.core.test.MainDispatcherRule
 import dev.dai.android.architecture.core.test.repository.FakeUserRepository
+import dev.dai.android.architecture.ui.UserMessageStateHolder
 import io.mockk.coEvery
 import io.mockk.junit4.MockKRule
 import io.mockk.mockk
@@ -25,10 +26,12 @@ class UserListViewModelTest {
   @get:Rule
   val mockRule = MockKRule(this)
 
+  private val userMessageStateHolder = mockk<UserMessageStateHolder>()
+
   @Test
   fun `Has users`() = runTest {
     val userRepository = FakeUserRepository()
-    val viewModel = UserListViewModel(userRepository)
+    val viewModel = UserListViewModel(userMessageStateHolder, userRepository)
     backgroundScope.launch(UnconfinedTestDispatcher(testScheduler)) {
       viewModel.uiState.collect()
     }
@@ -71,7 +74,7 @@ class UserListViewModelTest {
     val userRepository = mockk<UserRepository> {
       coEvery { users } returns flow { throw exception }
     }
-    val viewModel = UserListViewModel(userRepository)
+    val viewModel = UserListViewModel(userMessageStateHolder, userRepository)
     backgroundScope.launch(UnconfinedTestDispatcher(testScheduler)) {
       viewModel.uiState.collect()
     }

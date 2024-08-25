@@ -6,22 +6,26 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.dai.android.architecture.core.data.repository.UserRepository
 import dev.dai.android.architecture.core.model.User
 import dev.dai.android.architecture.ui.STOP_TIMEOUT_MILLIS
+import dev.dai.android.architecture.ui.UserMessageStateHolder
 import dev.dai.android.architecture.ui.buildUiState
+import dev.dai.android.architecture.ui.handleErrorAndRetry
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.stateIn
 import javax.inject.Inject
 
 @HiltViewModel
 class UserListViewModel @Inject constructor(
+  userMessageStateHolder: UserMessageStateHolder,
   userRepository: UserRepository,
-) : ViewModel() {
+) : ViewModel(), UserMessageStateHolder by userMessageStateHolder {
 
   private val usersStateFlow =
     userRepository.users
-      .catch {
-        // TODO Handle error
+      .handleErrorAndRetry(
+        actionLabelResId = null, // TODO retry strings resource id
+        userMessageStateHolder = userMessageStateHolder,
+      ) {
         emit(emptyList())
       }
       .stateIn(

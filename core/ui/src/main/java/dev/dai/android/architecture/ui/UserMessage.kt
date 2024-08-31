@@ -28,7 +28,7 @@ fun SnackbarMessageEffect(
 ) {
   userMessageStateHolder.messageUiState.userMessages.firstOrNull()?.let { userMessage ->
     val message =
-      userMessage.message.ifEmpty { "通信エラーが発生しました。しばらく時間を置いて再度お試しください。" } // TODO strings.xml
+      userMessage.message.ifEmpty { stringResource(id = R.string.core_ui_message_unknown_error) }
     val actionLabel = userMessage.actionLabelResId?.let { stringResource(id = it) }
     LaunchedEffect(userMessage) {
       val snackbarResult: SnackbarResult = if (userMessage.duration == null) {

@@ -52,6 +52,7 @@ class UserListViewModelTest {
     assertEquals(
       UserListContentUiState(
         userListUiState = UserListUiState.UserList(
+          isRefresh = false,
           users = listOf(
             User.fake(),
             User.fake(
@@ -72,7 +73,7 @@ class UserListViewModelTest {
   fun `Fetch users failed`() = runTest {
     val exception = TimeoutException()
     val userRepository = mockk<UserRepository> {
-      coEvery { users } returns flow { throw exception }
+      coEvery { users() } returns flow { throw exception }
     }
     val viewModel = UserListViewModel(userMessageStateHolder, userRepository)
     backgroundScope.launch(UnconfinedTestDispatcher(testScheduler)) {
@@ -82,6 +83,7 @@ class UserListViewModelTest {
     assertEquals(
       UserListContentUiState(
         userListUiState = UserListUiState.UserList(
+          isRefresh = false,
           users = emptyList()
         )
       ),

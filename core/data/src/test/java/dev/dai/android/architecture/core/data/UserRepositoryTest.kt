@@ -23,11 +23,11 @@ class UserRepositoryTest {
 
   @Test
   fun `users should return a list of users`() = runTest {
-    val users = userRepository.users.first()
+    val users = userRepository.users().first()
     assertEquals(
       listOf(
-        User.Companion.fake(),
-        User.Companion.fake(
+        User.fake(),
+        User.fake(
           id = 2,
           name = "User2",
           email = "user2@dev.dai.com",

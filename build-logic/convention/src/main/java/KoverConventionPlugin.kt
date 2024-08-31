@@ -19,6 +19,7 @@ class KoverConventionPlugin : Plugin<Project> {
       }
 
       configure<KoverProjectExtension> {
+        useJacoco()
         reports {
           filters {
             includes.packages("dev.dai.android.architecture.*")

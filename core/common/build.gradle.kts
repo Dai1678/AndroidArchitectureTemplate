@@ -5,3 +5,7 @@ plugins {
 android {
   namespace = "dev.dai.android.architecture.template.common"
 }
+
+dependencies {
+  implementation(libs.timber)
+}

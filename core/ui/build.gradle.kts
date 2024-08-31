@@ -11,4 +11,5 @@ android {
 dependencies {
   implementation(libs.androidx.lifecycle.viewModel)
   implementation(libs.kotlinx.coroutines.android)
+  implementation(libs.timber)
 }

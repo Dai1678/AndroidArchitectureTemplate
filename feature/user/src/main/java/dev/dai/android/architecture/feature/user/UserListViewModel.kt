@@ -30,7 +30,7 @@ class UserListViewModel @Inject constructor(
   private val usersStateFlow =
     userRepository.users()
       .handleErrorAndRetry(
-        actionLabelResId = UiR.string.label_retry_get,
+        actionLabelResId = UiR.string.core_ui_label_retry_get,
         userMessageStateHolder = userMessageStateHolder,
         fallbackValue = emptyList(),
       )

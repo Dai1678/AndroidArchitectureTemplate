@@ -23,8 +23,6 @@ jobs:
         include:
           - language: java-kotlin
             build-mode: manual
-          - language: ruby
-            build-mode: none
 
     steps:
       - uses: actions/checkout@v4

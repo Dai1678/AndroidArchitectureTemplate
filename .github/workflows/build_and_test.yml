@@ -75,13 +75,10 @@ jobs:
       - name: Run kover coverage report
         run: ./gradlew koverXmlReport --no-daemon --stacktrace
 
-      - name: Setup ruby
-        uses: ruby/setup-ruby@v1
+      - name: Upload Coverage to CodeCov
+        uses: codecov/codecov-action@v4
         with:
-          ruby-version: '3.3'
-          bundler-cache: true
-
-      - name: run danger
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: bundle exec danger
+          fail_ci_if_error: true
+          files: ./build/reports/kover/report.xml
+          token: ${{ secrets.CODECOV_TOKEN }} # TODO Add CODECOV_TOKEN to your repository secrets
+          verbose: true

@@ -7,6 +7,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import dev.dai.android.architecture.core.model.provider.BuildConfigProvider
 import dev.dai.android.architecture.core.network.provider.ServerEnvironmentProvider
+import dev.dai.android.architecture.core.network.service.NetworkService
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonNamingStrategy
@@ -36,17 +37,20 @@ internal object NetworkModule {
 
   @Provides
   @Singleton
+  fun provideNetworkService(): NetworkService = NetworkService()
+
+  @Provides
+  @Singleton
   fun provideOkHttpClient(
     buildConfigProvider: BuildConfigProvider,
   ): OkHttpClient {
     return OkHttpClient.Builder().apply {
-      // TODO: ResponseInterceptor
       addInterceptor(
         HttpLoggingInterceptor().apply {
-          if (buildConfigProvider.isDebugBuild) {
-            level = HttpLoggingInterceptor.Level.BODY
+          level = if (buildConfigProvider.isDebugBuild) {
+            HttpLoggingInterceptor.Level.BODY
           } else {
-            level = HttpLoggingInterceptor.Level.NONE
+            HttpLoggingInterceptor.Level.NONE
           }
         }
       )

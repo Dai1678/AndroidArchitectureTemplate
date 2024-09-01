@@ -4,5 +4,6 @@ import dev.dai.android.architecture.core.model.User
 import kotlinx.coroutines.flow.Flow
 
 interface UserRepository {
-  val users: Flow<List<User>>
+  fun users(): Flow<List<User>>
+  suspend fun refresh()
 }

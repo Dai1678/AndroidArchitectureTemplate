@@ -5,25 +5,35 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.dai.android.architecture.core.data.repository.UserRepository
 import dev.dai.android.architecture.core.model.User
+import dev.dai.android.architecture.template.common.runExceptionCatching
 import dev.dai.android.architecture.ui.STOP_TIMEOUT_MILLIS
+import dev.dai.android.architecture.ui.UserMessageStateHolder
 import dev.dai.android.architecture.ui.buildUiState
+import dev.dai.android.architecture.ui.handleErrorAndRetry
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 import javax.inject.Inject
+import dev.dai.android.architecture.ui.R as UiR
 
 @HiltViewModel
 class UserListViewModel @Inject constructor(
-  userRepository: UserRepository,
-) : ViewModel() {
+  val userMessageStateHolder: UserMessageStateHolder,
+  private val userRepository: UserRepository,
+) : ViewModel(), UserMessageStateHolder by userMessageStateHolder {
+
+  private val isRefresh = MutableStateFlow(false)
 
   private val usersStateFlow =
-    userRepository.users
-      .catch {
-        // TODO Handle error
-        emit(emptyList())
-      }
+    userRepository.users()
+      .handleErrorAndRetry(
+        actionLabelResId = UiR.string.core_ui_label_retry_get,
+        userMessageStateHolder = userMessageStateHolder,
+        fallbackValue = emptyList(),
+      )
       .stateIn(
         scope = viewModelScope,
         started = SharingStarted.WhileSubscribed(STOP_TIMEOUT_MILLIS),
@@ -31,16 +41,40 @@ class UserListViewModel @Inject constructor(
       )
 
   internal val uiState: StateFlow<UserListContentUiState> = buildUiState(
+    isRefresh,
     usersStateFlow,
-  ) { users ->
-    UserListContentUiState(buildUserListUiState(users))
+  ) { isRefresh, users ->
+    UserListContentUiState(buildUserListUiState(isRefresh, users))
   }
 
-  private fun buildUserListUiState(users: List<User>?): UserListUiState {
+  fun refresh() {
+    viewModelScope.launch {
+      isRefresh.update { true }
+      runExceptionCatching {
+        userRepository.refresh()
+      }.fold(
+        onSuccess = {
+          isRefresh.update { false }
+        },
+        onFailure = { throwable ->
+          isRefresh.update { false }
+          userMessageStateHolder.showMessage(
+            message = throwable.message.orEmpty()
+          )
+        }
+      )
+    }
+  }
+
+  private fun buildUserListUiState(
+    isRefresh: Boolean,
+    users: List<User>?,
+  ): UserListUiState {
     return if (users == null) {
       UserListUiState.Loading
     } else {
       UserListUiState.UserList(
+        isRefresh = isRefresh,
         users = users,
       )
     }

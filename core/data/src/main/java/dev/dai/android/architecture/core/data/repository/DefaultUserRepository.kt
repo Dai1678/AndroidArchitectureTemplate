@@ -1,9 +1,9 @@
 package dev.dai.android.architecture.core.data.repository
 
 import dev.dai.android.architecture.core.data.mapper.toUser
-import dev.dai.android.architecture.core.model.User
-import dev.dai.android.architecture.core.network.user.UserNetworkDataSource
-import dev.dai.android.architecture.core.network.user.response.UserResponse
+import dev.dai.android.architecture.template.core.network.user.UserNetworkDataSource
+import dev.dai.android.architecture.template.core.network.user.response.UserResponse
+import dev.dai.android.architecture.template.core.model.User
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.onStart

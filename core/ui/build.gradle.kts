@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-  namespace = "dev.dai.android.architecture.ui"
+  namespace = "dev.dai.android.architecture.template.ui"
 }
 
 dependencies {

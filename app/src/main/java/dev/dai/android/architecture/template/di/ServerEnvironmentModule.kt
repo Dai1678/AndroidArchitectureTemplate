@@ -4,7 +4,7 @@ import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import dev.dai.android.architecture.core.network.provider.ServerEnvironmentProvider
+import dev.dai.android.architecture.template.core.network.provider.ServerEnvironmentProvider
 import dev.dai.android.architecture.template.provider.DefaultServerEnvironmentProvider
 
 @Module

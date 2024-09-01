@@ -48,9 +48,6 @@ class KoverConventionPlugin : Plugin<Project> {
           }
         }
       }
-
-
     }
   }
-
 }

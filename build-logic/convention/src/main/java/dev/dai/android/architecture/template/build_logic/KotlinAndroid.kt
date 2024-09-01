@@ -34,11 +34,14 @@ internal fun Project.configureKotlinAndroid(
     compilerOptions.apply {
       jvmTarget.set(JvmTarget.JVM_17)
       allWarningsAsErrors.set(warningsAsErrors.toBoolean())
+      freeCompilerArgs.add(
+        "-opt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
+      )
     }
   }
 
   dependencies {
     // Required for emulator startup by AndroidJUnitRunner in instrumented tests
-    add("androidTestImplementation", libs.library("androidx-test-espresso-core"))
+    androidTestImplementation(libs.library("androidx-test-espresso-core"))
   }
 }

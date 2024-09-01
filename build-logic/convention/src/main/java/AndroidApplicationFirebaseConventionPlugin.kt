@@ -1,6 +1,7 @@
 import com.android.build.api.dsl.ApplicationExtension
 import com.google.firebase.appdistribution.gradle.AppDistributionExtension
 import com.google.firebase.crashlytics.buildtools.gradle.CrashlyticsExtension
+import dev.dai.android.architecture.template.build_logic.implementation
 import dev.dai.android.architecture.template.build_logic.library
 import dev.dai.android.architecture.template.build_logic.libs
 import org.gradle.api.Plugin
@@ -19,10 +20,10 @@ class AndroidApplicationFirebaseConventionPlugin : Plugin<Project> {
       }
 
       dependencies {
-        add("implementation", platform(libs.library("firebase-bom")))
-        "implementation"(libs.library("firebase.analytics"))
-        "implementation"(libs.library("firebase.performance"))
-        "implementation"(libs.library("firebase.crashlytics"))
+        implementation(platform(libs.library("firebase-bom")))
+        implementation(libs.library("firebase.analytics"))
+        implementation(libs.library("firebase.performance"))
+        implementation(libs.library("firebase.crashlytics"))
       }
 
       extensions.configure<ApplicationExtension> {

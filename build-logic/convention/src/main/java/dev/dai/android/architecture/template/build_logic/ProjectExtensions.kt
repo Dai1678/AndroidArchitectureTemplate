@@ -9,6 +9,5 @@ import org.gradle.kotlin.dsl.getByType
 val Project.libs
   get(): VersionCatalog = extensions.getByType<VersionCatalogsExtension>().named("libs")
 
-internal fun VersionCatalog.library(name: String): MinimalExternalModuleDependency {
-  return findLibrary(name).get().get()
-}
+internal fun VersionCatalog.library(name: String): MinimalExternalModuleDependency =
+  findLibrary(name).get().get()

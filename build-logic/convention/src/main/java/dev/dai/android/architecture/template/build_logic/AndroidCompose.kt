@@ -16,15 +16,15 @@ internal fun Project.configureAndroidCompose(
     }
 
     dependencies {
-      add("implementation", platform(libs.library("androidx-compose-bom")))
-      add("implementation", libs.library("androidx-compose-animation"))
-      add("implementation", libs.library("androidx-compose-foundation"))
-      add("implementation", libs.library("androidx-compose-material-iconsExtended"))
-      add("implementation", libs.library("androidx-compose-material3"))
-      add("implementation", libs.library("androidx-compose-material3-windowSizeClass"))
-      add("implementation", libs.library("androidx-compose-runtime"))
-      add("implementation", libs.library("androidx-compose-ui-tooling-preview"))
-      add("debugImplementation", libs.library("androidx-compose-ui-tooling"))
+      implementation(platform(libs.library("androidx-compose-bom")))
+      implementation(libs.library("androidx-compose-animation"))
+      implementation(libs.library("androidx-compose-foundation"))
+      implementation(libs.library("androidx-compose-material-iconsExtended"))
+      implementation(libs.library("androidx-compose-material3"))
+      implementation(libs.library("androidx-compose-material3-windowSizeClass"))
+      implementation(libs.library("androidx-compose-runtime"))
+      implementation(libs.library("androidx-compose-ui-tooling-preview"))
+      debugImplementation(libs.library("androidx-compose-ui-tooling"))
     }
 
     testOptions {

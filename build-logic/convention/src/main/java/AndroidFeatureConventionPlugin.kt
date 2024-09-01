@@ -1,6 +1,7 @@
 import com.android.build.api.dsl.Lint
 import com.android.build.gradle.LibraryExtension
 import dev.dai.android.architecture.build_logic.configure
+import dev.dai.android.architecture.build_logic.library
 import dev.dai.android.architecture.build_logic.libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -25,14 +26,9 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
         add("implementation", project(":core:ui"))
         add("implementation", project(":core:designsystem"))
 
-        add("implementation", libs.findLibrary("androidx.hilt.navigation.compose").get())
-        add("implementation", libs.findLibrary("androidx.lifecycle.runtimeCompose").get())
-        add("implementation", libs.findLibrary("androidx.lifecycle.viewModelCompose").get())
-
-        add(
-          "androidTestImplementation",
-          libs.findLibrary("androidx.lifecycle.runtimeTesting").get()
-        )
+        add("implementation", libs.library("androidx.hilt.navigation.compose"))
+        add("implementation", libs.library("androidx.lifecycle.runtimeCompose"))
+        add("implementation", libs.library("androidx.lifecycle.viewModelCompose"))
       }
     }
   }

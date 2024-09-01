@@ -16,17 +16,15 @@ internal fun Project.configureAndroidCompose(
     }
 
     dependencies {
-      val bom = libs.findLibrary("androidx-compose-bom").get()
-      add("implementation", platform(bom))
-      add("androidTestImplementation", platform(bom))
-      add("implementation", libs.findLibrary("androidx-compose-animation").get())
-      add("implementation", libs.findLibrary("androidx-compose-foundation").get())
-      add("implementation", libs.findLibrary("androidx-compose-material-iconsExtended").get())
-      add("implementation", libs.findLibrary("androidx-compose-material3").get())
-      add("implementation", libs.findLibrary("androidx-compose-material3-windowSizeClass").get())
-      add("implementation", libs.findLibrary("androidx-compose-runtime").get())
-      add("implementation", libs.findLibrary("androidx-compose-ui-tooling-preview").get())
-      add("debugImplementation", libs.findLibrary("androidx-compose-ui-tooling").get())
+      add("implementation", platform(libs.library("androidx-compose-bom")))
+      add("implementation", libs.library("androidx-compose-animation"))
+      add("implementation", libs.library("androidx-compose-foundation"))
+      add("implementation", libs.library("androidx-compose-material-iconsExtended"))
+      add("implementation", libs.library("androidx-compose-material3"))
+      add("implementation", libs.library("androidx-compose-material3-windowSizeClass"))
+      add("implementation", libs.library("androidx-compose-runtime"))
+      add("implementation", libs.library("androidx-compose-ui-tooling-preview"))
+      add("debugImplementation", libs.library("androidx-compose-ui-tooling"))
     }
 
     testOptions {

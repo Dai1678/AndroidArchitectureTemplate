@@ -4,6 +4,7 @@ import com.android.build.gradle.LibraryExtension
 import dev.dai.android.architecture.build_logic.configure
 import dev.dai.android.architecture.build_logic.configureKotlinAndroid
 import dev.dai.android.architecture.build_logic.disableUnnecessaryAndroidTests
+import dev.dai.android.architecture.build_logic.library
 import dev.dai.android.architecture.build_logic.libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -36,7 +37,7 @@ class AndroidLibraryConventionPlugin : Plugin<Project> {
       }
       dependencies {
         add("testImplementation", kotlin("test"))
-        add("testImplementation", libs.findLibrary("mockk").get())
+        add("testImplementation", libs.library("mockk"))
         add("androidTestImplementation", kotlin("test"))
       }
     }

@@ -1,3 +1,4 @@
+import dev.dai.android.architecture.build_logic.library
 import dev.dai.android.architecture.build_logic.libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -12,8 +13,8 @@ class AndroidHiltConventionPlugin : Plugin<Project> {
       }
 
       dependencies {
-        "implementation"(libs.findLibrary("hilt.android").get())
-        "ksp"(libs.findLibrary("hilt.compiler").get())
+        "implementation"(libs.library("hilt.android"))
+        "ksp"(libs.library("hilt.compiler"))
       }
     }
   }

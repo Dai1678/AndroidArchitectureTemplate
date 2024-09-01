@@ -23,10 +23,6 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
       }
 
       dependencies {
-        implementation(project(":core:common"))
-        implementation(project(":core:ui"))
-        implementation(project(":core:designsystem"))
-
         implementation(libs.library("androidx.hilt.navigation.compose"))
         implementation(libs.library("androidx.lifecycle.runtimeCompose"))
         implementation(libs.library("androidx.lifecycle.viewModelCompose"))

@@ -1,6 +1,5 @@
 package dev.dai.android.architecture.template.build_logic
 
-import org.gradle.api.Project
 import org.gradle.api.artifacts.Dependency
 import org.gradle.api.artifacts.MinimalExternalModuleDependency
 import org.gradle.kotlin.dsl.DependencyHandlerScope
@@ -15,12 +14,6 @@ fun DependencyHandlerScope.implementation(
   artifact: MinimalExternalModuleDependency,
 ) {
   add("implementation", artifact)
-}
-
-fun DependencyHandlerScope.implementation(
-  project: Project,
-) {
-  add("implementation", project)
 }
 
 fun DependencyHandlerScope.debugImplementation(

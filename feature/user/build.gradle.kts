@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-  namespace = "dev.dai.android.architecture.feature.user"
+  namespace = "dev.dai.android.architecture.template.feature.user"
 }
 
 dependencies {
@@ -13,8 +13,7 @@ dependencies {
   implementation(project(":core:data"))
   implementation(project(":core:ui"))
   implementation(project(":core:designsystem"))
-
-  testImplementation(project(":core:test"))
+  testImplementation(project(":core:testing"))
 
   implementation(libs.kotlinx.coroutines.android)
 

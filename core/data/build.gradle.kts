@@ -4,14 +4,13 @@ plugins {
 }
 
 android {
-  namespace = "dev.dai.android.architecture.core.data"
+  namespace = "dev.dai.android.architecture.template.core.data"
 }
 
 dependencies {
   implementation(project(":core:model"))
   implementation(project(":core:network"))
-
-  testImplementation(project(":core:test"))
+  testImplementation(project(":core:testing"))
 
   implementation(libs.kotlinx.coroutines.android)
   implementation(libs.kotlinx.coroutines.test)

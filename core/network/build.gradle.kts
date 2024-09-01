@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-  namespace = "dev.dai.android.architecture.core.network"
+  namespace = "dev.dai.android.architecture.template.core.network"
 }
 
 dependencies {

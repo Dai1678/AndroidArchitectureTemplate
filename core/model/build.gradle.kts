@@ -3,5 +3,5 @@ plugins {
 }
 
 android {
-  namespace = "dev.dai.android.architecture.core.model"
+  namespace = "dev.dai.android.architecture.template.core.model"
 }

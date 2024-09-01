@@ -4,5 +4,5 @@ plugins {
 }
 
 android {
-  namespace = "dev.dai.android.architecture.designsystem"
+  namespace = "dev.dai.android.architecture.template.designsystem"
 }

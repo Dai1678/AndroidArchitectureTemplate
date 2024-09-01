@@ -1,7 +1,7 @@
-import dev.dai.android.architecture.template.build_logic.implementation
-import dev.dai.android.architecture.template.build_logic.ksp
-import dev.dai.android.architecture.template.build_logic.library
-import dev.dai.android.architecture.template.build_logic.libs
+import dev.dai.android.architecture.template.buildlogic.implementation
+import dev.dai.android.architecture.template.buildlogic.ksp
+import dev.dai.android.architecture.template.buildlogic.library
+import dev.dai.android.architecture.template.buildlogic.libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies

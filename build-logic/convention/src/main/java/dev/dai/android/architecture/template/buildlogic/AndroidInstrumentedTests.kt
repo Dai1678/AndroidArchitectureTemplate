@@ -1,4 +1,4 @@
-package dev.dai.android.architecture.template.build_logic
+package dev.dai.android.architecture.template.buildlogic
 
 import com.android.build.api.variant.LibraryAndroidComponentsExtension
 import org.gradle.api.Project

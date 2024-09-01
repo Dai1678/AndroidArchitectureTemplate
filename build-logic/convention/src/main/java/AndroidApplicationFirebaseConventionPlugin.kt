@@ -1,9 +1,9 @@
 import com.android.build.api.dsl.ApplicationExtension
 import com.google.firebase.appdistribution.gradle.AppDistributionExtension
 import com.google.firebase.crashlytics.buildtools.gradle.CrashlyticsExtension
-import dev.dai.android.architecture.template.build_logic.implementation
-import dev.dai.android.architecture.template.build_logic.library
-import dev.dai.android.architecture.template.build_logic.libs
+import dev.dai.android.architecture.template.buildlogic.implementation
+import dev.dai.android.architecture.template.buildlogic.library
+import dev.dai.android.architecture.template.buildlogic.libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure

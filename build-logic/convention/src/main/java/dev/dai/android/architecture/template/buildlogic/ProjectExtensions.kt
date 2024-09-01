@@ -1,4 +1,4 @@
-package dev.dai.android.architecture.template.build_logic
+package dev.dai.android.architecture.template.buildlogic
 
 import org.gradle.api.Project
 import org.gradle.api.artifacts.MinimalExternalModuleDependency

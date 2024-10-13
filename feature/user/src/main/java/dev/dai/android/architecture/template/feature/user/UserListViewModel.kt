@@ -28,7 +28,7 @@ class UserListViewModel @Inject constructor(
   private val isRefresh = MutableStateFlow(false)
 
   private val usersStateFlow =
-    userRepository.users()
+    userRepository.usersStream()
       .handleErrorAndRetry(
         actionLabelResId = UiR.string.core_ui_label_retry_get,
         userMessageStateHolder = userMessageStateHolder,

@@ -10,7 +10,7 @@ class FakeUserRepository : UserRepository {
 
   private val _users = MutableSharedFlow<List<User>>()
 
-  override fun users(): Flow<List<User>> = _users
+  override fun usersStream(): Flow<List<User>> = _users
 
   override suspend fun refresh() {
     _users.emit(listOf(User.fake()))

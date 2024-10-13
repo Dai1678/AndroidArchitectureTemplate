@@ -51,7 +51,7 @@ class UserListViewModelSpec : DescribeSpec({
     context("fetch users failed") {
       val exception = TimeoutException()
       val userRepository = mockk<UserRepository> {
-        coEvery { users() } returns flow { throw exception }
+        coEvery { usersStream() } returns flow { throw exception }
       }
       val viewModel = UserListViewModel(userMessageStateHolder, userRepository)
       val job = launch(UnconfinedTestDispatcher()) {
@@ -96,7 +96,7 @@ class UserListViewModelSpec : DescribeSpec({
     context("refresh failed") {
       val exception = TimeoutException()
       val userRepository = mockk<UserRepository> {
-        coEvery { users() } returns flowOf(listOf(User.fake()))
+        coEvery { usersStream() } returns flowOf(listOf(User.fake()))
         coEvery { refresh() } throws exception
       }
       coEvery { userMessageStateHolder.showMessage(exception.message.orEmpty()) } returns UserMessageResult.Dismissed

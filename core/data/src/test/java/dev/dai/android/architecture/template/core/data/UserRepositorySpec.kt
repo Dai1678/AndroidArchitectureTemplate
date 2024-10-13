@@ -20,10 +20,10 @@ class UserRepositorySpec : DescribeSpec({
     userRepository = DefaultUserRepository(userNetworkDataSource)
   }
 
-  describe("users") {
+  describe("usersStream") {
     context("has users") {
       userNetworkDataSource.setUsers(UserResponse.fake())
-      val users = userRepository.users().first()
+      val users = userRepository.usersStream().first()
 
       it("should return a list of users") {
         users shouldBe listOf(User.fake())
@@ -32,7 +32,7 @@ class UserRepositorySpec : DescribeSpec({
 
     context("no users") {
       userNetworkDataSource.setUsers()
-      val users = userRepository.users().first()
+      val users = userRepository.usersStream().first()
 
       it("should return an empty list") {
         users shouldBe emptyList()
@@ -42,12 +42,12 @@ class UserRepositorySpec : DescribeSpec({
 
   describe("refresh") {
     userNetworkDataSource.setUsers()
-    val usersInit = userRepository.users().first()
+    val usersInit = userRepository.usersStream().first()
 
     userNetworkDataSource.setUsers(UserResponse.fake())
     userRepository.refresh()
 
-    val usersRefreshed = userRepository.users().first()
+    val usersRefreshed = userRepository.usersStream().first()
 
     it("should refresh users") {
       usersInit shouldBe emptyList()

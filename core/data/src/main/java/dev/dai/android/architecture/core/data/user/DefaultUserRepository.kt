@@ -15,7 +15,7 @@ class DefaultUserRepository @Inject constructor(
 
   private val _users = MutableStateFlow(emptyList<User>())
 
-  override fun users(): Flow<List<User>> {
+  override fun usersStream(): Flow<List<User>> {
     return _users.onStart {
       if (_users.value.isEmpty()) {
         refresh()

@@ -3,9 +3,9 @@ package dev.dai.android.architecture.template.core.data
 import dev.dai.android.architecture.core.data.user.DefaultUserRepository
 import dev.dai.android.architecture.template.core.model.User
 import dev.dai.android.architecture.template.core.model.fake
+import dev.dai.android.architecture.template.core.network.user.fake.FakeUserNetworkDataSource
 import dev.dai.android.architecture.template.core.network.user.response.UserResponse
 import dev.dai.android.architecture.template.core.network.user.response.fake
-import dev.dai.android.architecture.template.core.testing.datasource.FakeUserNetworkDataSource
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.shouldBe
 import kotlinx.coroutines.flow.first

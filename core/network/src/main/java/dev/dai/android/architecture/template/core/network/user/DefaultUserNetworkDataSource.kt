@@ -13,7 +13,7 @@ import kotlin.random.Random
 //  suspend fun getUsers(): List<UserResponse>
 //}
 
-class DefaultUserNetworkDataSource internal constructor(
+internal class DefaultUserNetworkDataSource internal constructor(
   private val networkService: NetworkService,
   retrofit: Retrofit,
 ) : UserNetworkDataSource {

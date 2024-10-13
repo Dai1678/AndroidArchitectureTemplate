@@ -1,10 +1,10 @@
 package dev.dai.android.architecture.template.feature.user
 
 import dev.dai.android.architecture.core.data.user.UserRepository
+import dev.dai.android.architecture.core.data.user.fake.FakeUserRepository
 import dev.dai.android.architecture.template.core.model.User
 import dev.dai.android.architecture.template.core.model.fake
 import dev.dai.android.architecture.template.core.testing.MainDispatcherListener
-import dev.dai.android.architecture.template.core.testing.repository.FakeUserRepository
 import dev.dai.android.architecture.template.ui.UserMessageResult
 import dev.dai.android.architecture.template.ui.UserMessageStateHolder
 import io.kotest.core.spec.style.DescribeSpec

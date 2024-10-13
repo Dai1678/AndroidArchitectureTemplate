@@ -27,6 +27,13 @@ internal fun Project.configureKotlinAndroid(
       sourceCompatibility = JavaVersion.VERSION_17
       targetCompatibility = JavaVersion.VERSION_17
     }
+
+    @Suppress("UnstableApiUsage")
+    testOptions {
+      animationsDisabled = true
+      unitTests.isIncludeAndroidResources = true
+      unitTests.all { it.useJUnitPlatform() }
+    }
   }
 
   extensions.configure<KotlinAndroidProjectExtension> {
@@ -41,6 +48,10 @@ internal fun Project.configureKotlinAndroid(
   }
 
   dependencies {
+    testImplementation(libs.library("kotest-runner-junit5"))
+    testImplementation(libs.library("kotest-assertions-core"))
+    testImplementation(libs.library("kotest-property"))
+
     // Required for emulator startup by AndroidJUnitRunner in instrumented tests
     androidTestImplementation(libs.library("androidx-test-espresso-core"))
   }

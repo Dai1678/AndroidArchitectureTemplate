@@ -22,7 +22,6 @@ class AndroidLibraryConventionPlugin : Plugin<Project> {
       extensions.configure<LibraryExtension> {
         configureKotlinAndroid(this)
         defaultConfig.targetSdk = 34
-        testOptions.animationsDisabled = true
         // The resource prefix is derived from the module name,
         // so resources inside ":core:module1" must be prefixed with "core_module1_"
         resourcePrefix =

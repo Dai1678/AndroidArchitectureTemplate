@@ -1,6 +1,6 @@
 package dev.dai.android.architecture.template.feature.user
 
-import dev.dai.android.architecture.core.data.repository.UserRepository
+import dev.dai.android.architecture.core.data.user.UserRepository
 import dev.dai.android.architecture.template.core.model.User
 import dev.dai.android.architecture.template.core.model.fake
 import dev.dai.android.architecture.template.core.testing.MainDispatcherListener
@@ -33,16 +33,7 @@ class UserListViewModelSpec : DescribeSpec({
       }
 
       userRepository.emitUser(
-        listOf(
-          User.fake(),
-          User.fake(
-            id = 2,
-            name = "User2",
-            email = "user2@dev.dai.com",
-            phone = "1234567890",
-            website = "https://dev.dai.com",
-          )
-        )
+        listOf(User.fake())
       )
 
       job.cancel()
@@ -51,16 +42,7 @@ class UserListViewModelSpec : DescribeSpec({
         viewModel.uiState.value shouldBe UserListContentUiState(
           userListUiState = UserListUiState.UserList(
             isRefresh = false,
-            users = listOf(
-              User.fake(),
-              User.fake(
-                id = 2,
-                name = "User2",
-                email = "user2@dev.dai.com",
-                phone = "1234567890",
-                website = "https://dev.dai.com",
-              )
-            )
+            users = listOf(User.fake())
           )
         )
       }
@@ -96,19 +78,7 @@ class UserListViewModelSpec : DescribeSpec({
         viewModel.uiState.collect()
       }
 
-      userRepository.emitUser(
-        listOf(
-          User.fake(),
-          User.fake(
-            id = 2,
-            name = "User2",
-            email = "user2@dev.dai.com",
-            phone = "1234567890",
-            website = "https://dev.dai.com",
-          )
-        )
-      )
-
+      userRepository.emitUser(listOf(User.fake()))
       viewModel.refresh()
 
       job.cancel()

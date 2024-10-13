@@ -1,6 +1,6 @@
 package dev.dai.android.architecture.template.core.testing.repository
 
-import dev.dai.android.architecture.core.data.repository.UserRepository
+import dev.dai.android.architecture.core.data.user.UserRepository
 import dev.dai.android.architecture.template.core.model.User
 import dev.dai.android.architecture.template.core.model.fake
 import kotlinx.coroutines.flow.Flow

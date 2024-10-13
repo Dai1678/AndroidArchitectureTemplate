@@ -48,10 +48,6 @@ internal fun Project.configureKotlinAndroid(
   }
 
   dependencies {
-    testImplementation(libs.library("kotest-runner-junit5"))
-    testImplementation(libs.library("kotest-assertions-core"))
-    testImplementation(libs.library("kotest-property"))
-
     // Required for emulator startup by AndroidJUnitRunner in instrumented tests
     androidTestImplementation(libs.library("androidx-test-espresso-core"))
   }

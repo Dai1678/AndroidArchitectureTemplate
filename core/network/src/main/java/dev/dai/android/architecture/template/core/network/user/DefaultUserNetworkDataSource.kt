@@ -7,7 +7,7 @@ import retrofit2.create
 import retrofit2.http.GET
 
 private interface UserApi {
-  @GET("user/users")
+  @GET("user/users.json")
   suspend fun getUsers(): List<UserResponse>
 }
 

@@ -75,10 +75,17 @@ jobs:
       - name: Run kover coverage report
         run: ./gradlew koverXmlReport --no-daemon --stacktrace
 
+      - name: Upload test results to CodeCov
+        uses: codecov/test-results-action@v1
+        with:
+          files: ./app/build/reports/kover/report.xml
+          token: ${{ secrets.CODECOV_TOKEN }}
+          verbose: true
+
       - name: Upload Coverage to CodeCov
         uses: codecov/codecov-action@v4
         with:
           fail_ci_if_error: true
           files: ./build/reports/kover/report.xml
-          token: ${{ secrets.CODECOV_TOKEN }} # TODO Add CODECOV_TOKEN to your repository secrets
+          token: ${{ secrets.CODECOV_TOKEN }}
           verbose: true

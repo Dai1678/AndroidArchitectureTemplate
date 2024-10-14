@@ -3,7 +3,7 @@ package dev.dai.android.architecture.template.feature.user
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import dev.dai.android.architecture.core.data.repository.UserRepository
+import dev.dai.android.architecture.core.data.user.UserRepository
 import dev.dai.android.architecture.template.common.runExceptionCatching
 import dev.dai.android.architecture.template.core.model.User
 import dev.dai.android.architecture.template.ui.STOP_TIMEOUT_MILLIS
@@ -28,7 +28,7 @@ class UserListViewModel @Inject constructor(
   private val isRefresh = MutableStateFlow(false)
 
   private val usersStateFlow =
-    userRepository.users()
+    userRepository.usersStream()
       .handleErrorAndRetry(
         actionLabelResId = UiR.string.core_ui_label_retry_get,
         userMessageStateHolder = userMessageStateHolder,

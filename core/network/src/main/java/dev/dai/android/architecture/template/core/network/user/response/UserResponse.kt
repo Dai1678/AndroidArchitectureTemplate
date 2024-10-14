@@ -1,5 +1,8 @@
 package dev.dai.android.architecture.template.core.network.user.response
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class UserResponse(
   val id: Int,
   val name: String,

@@ -27,9 +27,6 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
           }
         }
 
-        @Suppress("UnstableApiUsage")
-        testOptions.animationsDisabled = true
-
         lint(Lint::configure)
       }
     }

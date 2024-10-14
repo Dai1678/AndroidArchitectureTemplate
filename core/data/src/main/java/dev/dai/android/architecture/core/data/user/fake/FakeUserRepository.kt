@@ -1,6 +1,6 @@
-package dev.dai.android.architecture.template.core.testing.repository
+package dev.dai.android.architecture.core.data.user.fake
 
-import dev.dai.android.architecture.core.data.repository.UserRepository
+import dev.dai.android.architecture.core.data.user.UserRepository
 import dev.dai.android.architecture.template.core.model.User
 import dev.dai.android.architecture.template.core.model.fake
 import kotlinx.coroutines.flow.Flow
@@ -10,7 +10,7 @@ class FakeUserRepository : UserRepository {
 
   private val _users = MutableSharedFlow<List<User>>()
 
-  override fun users(): Flow<List<User>> = _users
+  override fun usersStream(): Flow<List<User>> = _users
 
   override suspend fun refresh() {
     _users.emit(listOf(User.fake()))

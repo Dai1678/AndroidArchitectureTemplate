@@ -5,9 +5,9 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import dev.dai.android.architecture.template.core.model.provider.BuildConfigProvider
 import dev.dai.android.architecture.template.core.network.provider.ServerEnvironmentProvider
 import dev.dai.android.architecture.template.core.network.service.NetworkService
-import dev.dai.android.architecture.template.core.model.provider.BuildConfigProvider
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonNamingStrategy
@@ -41,38 +41,41 @@ internal object NetworkModule {
 
   @Provides
   @Singleton
-  fun provideOkHttpClient(
+  fun provideRetrofit(
+    json: Json,
+    serverEnvironmentProvider: ServerEnvironmentProvider,
     buildConfigProvider: BuildConfigProvider,
-  ): OkHttpClient {
-    return OkHttpClient.Builder().apply {
-      addInterceptor(
-        HttpLoggingInterceptor().apply {
-          level = if (buildConfigProvider.isDebugBuild) {
-            HttpLoggingInterceptor.Level.BODY
-          } else {
-            HttpLoggingInterceptor.Level.NONE
-          }
-        }
-      )
-    }
-      .build()
+  ): Retrofit {
+    return RetrofitFactory.create(
+      serverEnvironmentProvider.baseUrl(),
+      json,
+      buildConfigProvider.isDebugBuild
+    )
   }
 }
 
-@Module
-@InstallIn(SingletonComponent::class)
-internal object RetrofitModule {
-  @Provides
-  @Singleton
-  fun provideRetrofit(
-    okHttpClient: OkHttpClient,
-    networkJson: Json,
-    serverEnvironmentProvider: ServerEnvironmentProvider,
+internal object RetrofitFactory {
+  fun create(
+    baseUrl: String,
+    json: Json,
+    isDebugBuild: Boolean = true,
   ): Retrofit {
     return Retrofit.Builder()
-      .client(okHttpClient)
-      .baseUrl(serverEnvironmentProvider.baseUrl())
-      .addConverterFactory(networkJson.asConverterFactory("application/json".toMediaType()))
+      .client(
+        OkHttpClient.Builder().apply {
+          addInterceptor(
+            HttpLoggingInterceptor().apply {
+              level = if (isDebugBuild) {
+                HttpLoggingInterceptor.Level.BODY
+              } else {
+                HttpLoggingInterceptor.Level.NONE
+              }
+            }
+          )
+        }.build()
+      )
+      .baseUrl(baseUrl)
+      .addConverterFactory(json.asConverterFactory("application/json".toMediaType()))
       .build()
   }
 }

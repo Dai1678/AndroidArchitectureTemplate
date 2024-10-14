@@ -16,4 +16,8 @@ dependencies {
   implementation(libs.okhttp.logging)
   implementation(libs.retrofit.core)
   implementation(libs.retrofit.kotlin.serialization)
+
+  testImplementation(libs.kotest.runner.junit5)
+  testImplementation(libs.kotest.assertions.core)
+  testImplementation(libs.kotest.extensions.mockserver)
 }

@@ -1,0 +1,5 @@
+ignore:
+  - "*/*Module.kt"
+  - "*/designsystem/*"
+  - "*/*App.kt"
+  - "*/ui/*"

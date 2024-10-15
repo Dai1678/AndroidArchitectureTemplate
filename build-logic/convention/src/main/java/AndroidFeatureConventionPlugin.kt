@@ -18,7 +18,6 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
         apply("android.architecture.template.detekt")
       }
       extensions.configure<LibraryExtension> {
-        testOptions.animationsDisabled = true
         lint(Lint::configure)
       }
 

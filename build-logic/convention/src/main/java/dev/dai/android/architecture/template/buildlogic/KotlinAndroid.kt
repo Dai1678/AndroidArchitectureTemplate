@@ -27,6 +27,13 @@ internal fun Project.configureKotlinAndroid(
       sourceCompatibility = JavaVersion.VERSION_17
       targetCompatibility = JavaVersion.VERSION_17
     }
+
+    @Suppress("UnstableApiUsage")
+    testOptions {
+      animationsDisabled = true
+      unitTests.isIncludeAndroidResources = true
+      unitTests.all { it.useJUnitPlatform() }
+    }
   }
 
   extensions.configure<KotlinAndroidProjectExtension> {

@@ -13,5 +13,9 @@ dependencies {
   testImplementation(project(":core:testing"))
 
   implementation(libs.kotlinx.coroutines.android)
-  implementation(libs.kotlinx.coroutines.test)
+
+  testImplementation(libs.kotlinx.coroutines.test)
+  testImplementation(libs.kotest.runner.junit5)
+  testImplementation(libs.kotest.assertions.core)
+  testImplementation(libs.kotest.property)
 }

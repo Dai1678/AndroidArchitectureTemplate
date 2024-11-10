@@ -1,5 +1,5 @@
 plugins {
-  alias(libs.plugins.android.architecture.template.android.library)
+  alias(libs.plugins.project.android.library)
 }
 
 android {

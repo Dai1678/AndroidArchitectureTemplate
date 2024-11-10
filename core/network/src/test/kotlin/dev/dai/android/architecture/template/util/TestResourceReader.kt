@@ -1,4 +1,4 @@
-package util
+package dev.dai.android.architecture.template.util
 
 import java.nio.charset.Charset
 

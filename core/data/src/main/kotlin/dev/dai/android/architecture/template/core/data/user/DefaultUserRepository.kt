@@ -1,6 +1,6 @@
-package dev.dai.android.architecture.core.data.user
+package dev.dai.android.architecture.template.core.data.user
 
-import dev.dai.android.architecture.core.data.user.mapper.toUser
+import dev.dai.android.architecture.template.core.data.user.mapper.toUser
 import dev.dai.android.architecture.template.core.model.User
 import dev.dai.android.architecture.template.core.network.user.UserNetworkDataSource
 import dev.dai.android.architecture.template.core.network.user.response.UserResponse

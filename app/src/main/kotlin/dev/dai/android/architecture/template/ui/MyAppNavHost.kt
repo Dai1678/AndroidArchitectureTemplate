@@ -8,7 +8,7 @@ import dev.dai.android.architecture.template.feature.user.USER_LIST_SCREEN_ROUTE
 import dev.dai.android.architecture.template.feature.user.userListScreen
 
 @Composable
-fun AppNavHost(
+fun MyAppNavHost(
   navController: NavHostController = rememberNavController(),
   startDestination: String = USER_LIST_SCREEN_ROUTE,
 ) {

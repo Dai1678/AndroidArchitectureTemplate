@@ -5,16 +5,16 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import dev.dai.android.architecture.template.designsystem.theme.AndroidArchitectureTemplateTheme
+import dev.dai.android.architecture.template.designsystem.theme.MyTheme
 
 @Composable
 fun TemplateApp() {
-  AndroidArchitectureTemplateTheme {
+  MyTheme {
     Surface(
       modifier = Modifier.fillMaxSize(),
       color = MaterialTheme.colorScheme.background
     ) {
-      AppNavHost()
+      MyAppNavHost()
     }
   }
 }

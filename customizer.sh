@@ -41,7 +41,7 @@ echo "Cleaning up"
 find . -name "*.bak" -type f -delete
 
 # Rename app
-if [[ $APPNAME ]]
+if [[ $APPNAME != MyApp ]]
 then
     echo "Renaming app to $APPNAME"
     find ./ -type f \( -name "App.kt" -or -name "settings.gradle.kts" -or -name "*.xml" \) -exec sed -i.bak "s/App/$APPNAME/g" {} \;

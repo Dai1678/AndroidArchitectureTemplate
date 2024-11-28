@@ -1,3 +1,5 @@
+package dev.dai.android.architecture.template
+
 import dev.dai.android.architecture.template.core.network.di.RetrofitFactory
 import dev.dai.android.architecture.template.core.network.service.NetworkService
 import dev.dai.android.architecture.template.core.network.user.DefaultUserNetworkDataSource
@@ -8,7 +10,7 @@ import kotlinx.serialization.json.Json
 import org.mockserver.client.MockServerClient
 import org.mockserver.model.HttpRequest
 import org.mockserver.model.HttpResponse
-import util.TestResourceReader
+import dev.dai.android.architecture.template.util.TestResourceReader
 
 class UserNetworkDataSourceSpec : DescribeSpec({
   listener(MockServerListener(1080))

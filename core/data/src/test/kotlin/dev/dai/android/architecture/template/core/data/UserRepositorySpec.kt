@@ -1,6 +1,6 @@
 package dev.dai.android.architecture.template.core.data
 
-import dev.dai.android.architecture.core.data.user.DefaultUserRepository
+import dev.dai.android.architecture.template.core.data.user.DefaultUserRepository
 import dev.dai.android.architecture.template.core.model.User
 import dev.dai.android.architecture.template.core.model.fake
 import dev.dai.android.architecture.template.core.network.user.fake.FakeUserNetworkDataSource

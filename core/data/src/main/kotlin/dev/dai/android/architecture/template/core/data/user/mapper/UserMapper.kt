@@ -1,4 +1,4 @@
-package dev.dai.android.architecture.core.data.user.mapper
+package dev.dai.android.architecture.template.core.data.user.mapper
 
 import dev.dai.android.architecture.template.core.model.User
 import dev.dai.android.architecture.template.core.network.user.response.UserResponse

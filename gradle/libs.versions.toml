@@ -15,7 +15,7 @@ androidxTestRules = "1.6.1"
 # androidxTestRunner = "1.6.2"
 coil = "2.7.0"
 detekt = "1.23.6"
-firebaseBom = "33.5.1"
+firebaseBom = "33.6.0"
 firebaseAppDistributionPlugin = "5.0.0"
 firebaseCrashlyticsPlugin = "3.0.2"
 firebasePerfPlugin = "1.4.2"
@@ -118,13 +118,13 @@ ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover" }
 
 # Plugins defined by this project
-android-architecture-template-android-application = { id = "android.architecture.template.android.application", version = "unspecified" }
-android-architecture-template-android-application-compose = { id = "android.architecture.template.android.application.compose", version = "unspecified" }
-android-architecture-template-android-application-firebase = { id = "android.architecture.template.android.application.firebase", version = "unspecified" }
-android-architecture-template-android-feature = { id = "android.architecture.template.android.feature", version = "unspecified" }
-android-architecture-template-android-hilt = { id = "android.architecture.template.android.hilt", version = "unspecified" }
-android-architecture-template-android-library = { id = "android.architecture.template.android.library", version = "unspecified" }
-android-architecture-template-android-library-compose = { id = "android.architecture.template.android.library.compose", version = "unspecified" }
-android-architecture-template-android-test = { id = "android.architecture.template.android.test", version = "unspecified" }
-android-architecture-template-detekt = { id = "android.architecture.template.detekt", version = "unspecified" }
-android-architecture-template-kover = { id = "android.architecture.template.kover", version = "unspecified" }
+project-android-application = { id = "project.android.application", version = "unspecified" }
+project-android-application-compose = { id = "project.android.application.compose", version = "unspecified" }
+project-android-application-firebase = { id = "project.android.application.firebase", version = "unspecified" }
+project-android-feature = { id = "project.android.feature", version = "unspecified" }
+project-android-hilt = { id = "project.android.hilt", version = "unspecified" }
+project-android-library = { id = "project.android.library", version = "unspecified" }
+project-android-library-compose = { id = "project.android.library.compose", version = "unspecified" }
+project-android-test = { id = "project.android.test", version = "unspecified" }
+project-detekt = { id = "project.detekt", version = "unspecified" }
+project-kover = { id = "project.kover", version = "unspecified" }

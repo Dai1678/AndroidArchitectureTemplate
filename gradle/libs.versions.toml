@@ -1,21 +1,21 @@
 [versions]
 androidGradlePlugin = "8.5.2"
-androidxActivity = "1.9.1"
+androidxActivity = "1.9.3"
 androidxBrowser = "1.8.0"
 androidxComposeBom = "2024.06.00"
 androidxCore = "1.13.1"
 androidxDataStore = "1.1.1"
 androidxEspresso = "3.6.1"
 androidxHiltNavigationCompose = "1.2.0"
-androidxLifecycle = "2.8.4"
-androidxNavigation = "2.7.7"
+androidxLifecycle = "2.8.7"
+androidxNavigation = "2.8.4"
 # androidxTestCore = "1.6.1"
 androidxTestExt = "1.2.1"
 androidxTestRules = "1.6.1"
 # androidxTestRunner = "1.6.2"
 coil = "2.7.0"
 detekt = "1.23.6"
-firebaseBom = "33.1.2"
+firebaseBom = "33.6.0"
 firebaseAppDistributionPlugin = "5.0.0"
 firebaseCrashlyticsPlugin = "3.0.2"
 firebasePerfPlugin = "1.4.2"
@@ -29,8 +29,8 @@ kotestMockServer = "1.3.0"
 kotlin = "2.0.21"
 kotlinxCoroutines = "1.9.0"
 kotlinxDatetime = "0.6.0"
-kotlinxSerializationJson = "1.7.1"
-ksp = "2.0.20-1.0.24"
+kotlinxSerializationJson = "1.7.3"
+ksp = "2.0.21-1.0.28"
 kover = "0.8.3"
 mockk = "1.13.13"
 okhttp = "4.12.0"
@@ -118,13 +118,13 @@ ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover" }
 
 # Plugins defined by this project
-android-architecture-template-android-application = { id = "android.architecture.template.android.application", version = "unspecified" }
-android-architecture-template-android-application-compose = { id = "android.architecture.template.android.application.compose", version = "unspecified" }
-android-architecture-template-android-application-firebase = { id = "android.architecture.template.android.application.firebase", version = "unspecified" }
-android-architecture-template-android-feature = { id = "android.architecture.template.android.feature", version = "unspecified" }
-android-architecture-template-android-hilt = { id = "android.architecture.template.android.hilt", version = "unspecified" }
-android-architecture-template-android-library = { id = "android.architecture.template.android.library", version = "unspecified" }
-android-architecture-template-android-library-compose = { id = "android.architecture.template.android.library.compose", version = "unspecified" }
-android-architecture-template-android-test = { id = "android.architecture.template.android.test", version = "unspecified" }
-android-architecture-template-detekt = { id = "android.architecture.template.detekt", version = "unspecified" }
-android-architecture-template-kover = { id = "android.architecture.template.kover", version = "unspecified" }
+project-android-application = { id = "project.android.application", version = "unspecified" }
+project-android-application-compose = { id = "project.android.application.compose", version = "unspecified" }
+project-android-application-firebase = { id = "project.android.application.firebase", version = "unspecified" }
+project-android-feature = { id = "project.android.feature", version = "unspecified" }
+project-android-hilt = { id = "project.android.hilt", version = "unspecified" }
+project-android-library = { id = "project.android.library", version = "unspecified" }
+project-android-library-compose = { id = "project.android.library.compose", version = "unspecified" }
+project-android-test = { id = "project.android.test", version = "unspecified" }
+project-detekt = { id = "project.detekt", version = "unspecified" }
+project-kover = { id = "project.kover", version = "unspecified" }

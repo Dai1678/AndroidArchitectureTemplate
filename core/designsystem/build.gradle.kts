@@ -1,6 +1,6 @@
 plugins {
-  alias(libs.plugins.android.architecture.template.android.library)
-  alias(libs.plugins.android.architecture.template.android.library.compose)
+  alias(libs.plugins.project.android.library)
+  alias(libs.plugins.project.android.library.compose)
 }
 
 android {

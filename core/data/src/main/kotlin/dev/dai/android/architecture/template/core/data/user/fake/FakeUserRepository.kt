@@ -1,6 +1,6 @@
-package dev.dai.android.architecture.core.data.user.fake
+package dev.dai.android.architecture.template.core.data.user.fake
 
-import dev.dai.android.architecture.core.data.user.UserRepository
+import dev.dai.android.architecture.template.core.data.user.UserRepository
 import dev.dai.android.architecture.template.core.model.User
 import dev.dai.android.architecture.template.core.model.fake
 import kotlinx.coroutines.flow.Flow

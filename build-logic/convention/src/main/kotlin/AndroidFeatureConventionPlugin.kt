@@ -13,9 +13,9 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
   override fun apply(target: Project) {
     with(target) {
       pluginManager.apply {
-        apply("android.architecture.template.android.library")
-        apply("android.architecture.template.android.hilt")
-        apply("android.architecture.template.detekt")
+        apply("project.android.library")
+        apply("project.android.hilt")
+        apply("project.detekt")
       }
       extensions.configure<LibraryExtension> {
         lint(Lint::configure)

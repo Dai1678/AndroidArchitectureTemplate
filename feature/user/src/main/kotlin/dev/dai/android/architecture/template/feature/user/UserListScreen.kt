@@ -33,7 +33,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import dev.dai.android.architecture.template.core.model.User
 import dev.dai.android.architecture.template.core.model.fake
-import dev.dai.android.architecture.template.designsystem.theme.AndroidArchitectureTemplateTheme
+import dev.dai.android.architecture.template.designsystem.theme.MyTheme
 import dev.dai.android.architecture.template.ui.SnackbarMessageEffect
 
 const val USER_LIST_SCREEN_ROUTE = "user_list"
@@ -179,7 +179,7 @@ private const val PREVIEW_USER_LIST_SIZE = 20
 @PreviewLightDark
 @Composable
 private fun UserListContentPreview() {
-  AndroidArchitectureTemplateTheme {
+  MyTheme {
     Surface {
       UserListContent(
         uiState = UserListContentUiState(

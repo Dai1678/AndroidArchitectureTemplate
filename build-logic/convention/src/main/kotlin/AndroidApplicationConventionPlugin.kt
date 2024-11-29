@@ -2,6 +2,8 @@ import com.android.build.api.dsl.ApplicationExtension
 import com.android.build.api.dsl.Lint
 import dev.dai.android.architecture.template.buildlogic.configure
 import dev.dai.android.architecture.template.buildlogic.configureKotlinAndroid
+import dev.dai.android.architecture.template.buildlogic.libs
+import dev.dai.android.architecture.template.buildlogic.version
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
@@ -19,7 +21,7 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
         configureKotlinAndroid(this)
 
         defaultConfig {
-          targetSdk = 34
+          targetSdk = libs.version("targetSdkVersion")
           versionCode = 1
           versionName = "1.0"
           vectorDrawables {

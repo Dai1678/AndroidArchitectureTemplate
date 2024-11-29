@@ -1,9 +1,13 @@
 [versions]
+compileSdkVersion = "35"
+targetSdkVersion = "34"
+minSdkVersion = "28"
+
 androidGradlePlugin = "8.7.2"
 androidxActivity = "1.9.3"
 androidxBrowser = "1.8.0"
 androidxComposeBom = "2024.06.00"
-androidxCore = "1.13.1"
+androidxCore = "1.15.0"
 androidxDataStore = "1.1.1"
 androidxEspresso = "3.6.1"
 androidxHiltNavigationCompose = "1.2.0"

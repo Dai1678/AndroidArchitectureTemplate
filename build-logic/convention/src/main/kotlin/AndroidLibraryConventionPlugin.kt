@@ -4,6 +4,8 @@ import com.android.build.gradle.LibraryExtension
 import dev.dai.android.architecture.template.buildlogic.configure
 import dev.dai.android.architecture.template.buildlogic.configureKotlinAndroid
 import dev.dai.android.architecture.template.buildlogic.disableUnnecessaryAndroidTests
+import dev.dai.android.architecture.template.buildlogic.libs
+import dev.dai.android.architecture.template.buildlogic.version
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
@@ -21,7 +23,7 @@ class AndroidLibraryConventionPlugin : Plugin<Project> {
 
       extensions.configure<LibraryExtension> {
         configureKotlinAndroid(this)
-        defaultConfig.targetSdk = 34
+        defaultConfig.targetSdk = libs.version("targetSdkVersion")
         // The resource prefix is derived from the module name,
         // so resources inside ":core:module1" must be prefixed with "core_module1_"
         resourcePrefix =

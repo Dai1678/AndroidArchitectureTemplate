@@ -11,3 +11,5 @@ val Project.libs
 
 internal fun VersionCatalog.library(name: String): MinimalExternalModuleDependency =
   findLibrary(name).get().get()
+
+internal fun VersionCatalog.version(name: String): Int = findVersion(name).get().toString().toInt()

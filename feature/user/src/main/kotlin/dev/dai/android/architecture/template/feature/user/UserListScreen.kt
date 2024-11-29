@@ -1,7 +1,6 @@
 package dev.dai.android.architecture.template.feature.user
 
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -15,15 +14,12 @@ import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
-import androidx.compose.material3.pulltorefresh.PullToRefreshContainer
-import androidx.compose.material3.pulltorefresh.PullToRefreshState
+import androidx.compose.material3.pulltorefresh.PullToRefreshBox
 import androidx.compose.material3.pulltorefresh.rememberPullToRefreshState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.tooling.preview.PreviewLightDark
@@ -33,6 +29,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import dev.dai.android.architecture.template.core.model.User
 import dev.dai.android.architecture.template.core.model.fake
+import dev.dai.android.architecture.template.designsystem.component.LoadingContent
 import dev.dai.android.architecture.template.designsystem.theme.MyTheme
 import dev.dai.android.architecture.template.ui.SnackbarMessageEffect
 
@@ -43,32 +40,24 @@ fun NavGraphBuilder.userListScreen() {
   }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun UserListScreen(
   modifier: Modifier = Modifier,
   viewModel: UserListViewModel = hiltViewModel(),
 ) {
   val uiState: UserListContentUiState by viewModel.uiState.collectAsStateWithLifecycle()
-  val snackbarHostState = remember { SnackbarHostState() }
-  val pullToRefreshState = rememberPullToRefreshState()
-
-  if (pullToRefreshState.isRefreshing) {
-    LaunchedEffect(Unit) {
-      viewModel.refresh()
-    }
-  }
+  val snackBarHostState = remember { SnackbarHostState() }
 
   SnackbarMessageEffect(
-    snackbarHostState = snackbarHostState,
+    snackbarHostState = snackBarHostState,
     userMessageStateHolder = viewModel.userMessageStateHolder
   )
 
   UserListContent(
     uiState = uiState,
-    snackbarHostState = snackbarHostState,
-    pullToRefreshState = pullToRefreshState,
+    snackBarHostState = snackBarHostState,
     modifier = modifier,
+    onRefresh = viewModel::refresh
   )
 }
 
@@ -77,18 +66,28 @@ internal data class UserListContentUiState(
   val userListUiState: UserListUiState,
 )
 
+@Stable
+internal sealed interface UserListUiState {
+  data object Loading : UserListUiState
+  data class UserList(
+    val isRefreshUserList: Boolean,
+    val users: List<User>,
+  ) : UserListUiState
+}
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun UserListContent(
   uiState: UserListContentUiState,
-  snackbarHostState: SnackbarHostState,
-  pullToRefreshState: PullToRefreshState,
+  snackBarHostState: SnackbarHostState,
   modifier: Modifier = Modifier,
+  onRefresh: () -> Unit,
 ) {
   val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
+  val pullToRefreshState = rememberPullToRefreshState()
+
   Scaffold(
-    modifier = Modifier.nestedScroll(pullToRefreshState.nestedScrollConnection),
-    snackbarHost = { SnackbarHost(snackbarHostState) },
+    snackbarHost = { SnackbarHost(snackBarHostState) },
     topBar = {
       LargeTopAppBar(
         title = { Text(text = "ユーザー") },
@@ -96,86 +95,58 @@ private fun UserListContent(
       )
     }
   ) { innerPadding ->
-    UserList(
-      uiState = uiState.userListUiState,
-      pullToRefreshState = pullToRefreshState,
-      modifier = modifier
-        .fillMaxSize()
-        .padding(innerPadding)
-        .nestedScroll(scrollBehavior.nestedScrollConnection),
-      onUserClick = {}
-    )
-  }
-}
-
-@Stable
-internal sealed interface UserListUiState {
-  data object Loading : UserListUiState
-  data class UserList(
-    val isRefresh: Boolean,
-    val users: List<User>,
-  ) : UserListUiState
-}
-
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-private fun UserList(
-  uiState: UserListUiState,
-  pullToRefreshState: PullToRefreshState,
-  modifier: Modifier = Modifier,
-  onUserClick: (userId: Int) -> Unit,
-) {
-  Box(modifier = modifier.fillMaxSize()) {
-    when (uiState) {
+    when (uiState.userListUiState) {
       UserListUiState.Loading -> {
-        LaunchedEffect(Unit) {
-          pullToRefreshState.startRefresh()
-        }
-
-        PullToRefreshContainer(
-          state = pullToRefreshState,
-          modifier = Modifier.align(Alignment.TopCenter)
-        )
+        LoadingContent()
       }
 
       is UserListUiState.UserList -> {
-        LaunchedEffect(uiState.isRefresh) {
-          if (uiState.isRefresh) {
-            pullToRefreshState.startRefresh()
-          } else {
-            pullToRefreshState.endRefresh()
-          }
-        }
-
-        LazyColumn(
-          modifier = Modifier.fillMaxSize()
-        ) {
-          items(uiState.users) { user ->
-            ListItem(
-              headlineContent = {
-                Text(text = user.name)
-              },
-              supportingContent = {
-                Text(text = user.email)
-              },
-              modifier = Modifier.clickable {
-                onUserClick(user.id)
-              }
-            )
-          }
-        }
-        PullToRefreshContainer(
+        PullToRefreshBox(
+          modifier = Modifier.padding(innerPadding),
           state = pullToRefreshState,
-          modifier = Modifier.align(Alignment.TopCenter)
-        )
+          isRefreshing = uiState.userListUiState.isRefreshUserList,
+          onRefresh = onRefresh
+        ) {
+          UserList(
+            uiState = uiState.userListUiState,
+            modifier = modifier
+              .fillMaxSize()
+              .nestedScroll(scrollBehavior.nestedScrollConnection),
+            onUserClick = {}
+          )
+        }
       }
+    }
+  }
+}
+
+@Composable
+private fun UserList(
+  uiState: UserListUiState.UserList,
+  modifier: Modifier = Modifier,
+  onUserClick: (userId: Int) -> Unit,
+) {
+  LazyColumn(
+    modifier = modifier.fillMaxSize()
+  ) {
+    items(uiState.users) { user ->
+      ListItem(
+        headlineContent = {
+          Text(text = user.name)
+        },
+        supportingContent = {
+          Text(text = user.email)
+        },
+        modifier = Modifier.clickable {
+          onUserClick(user.id)
+        }
+      )
     }
   }
 }
 
 private const val PREVIEW_USER_LIST_SIZE = 20
 
-@OptIn(ExperimentalMaterial3Api::class)
 @PreviewLightDark
 @Composable
 private fun UserListContentPreview() {
@@ -184,7 +155,7 @@ private fun UserListContentPreview() {
       UserListContent(
         uiState = UserListContentUiState(
           userListUiState = UserListUiState.UserList(
-            isRefresh = false,
+            isRefreshUserList = false,
             users = buildList {
               repeat(PREVIEW_USER_LIST_SIZE) {
                 User.fake(
@@ -198,8 +169,8 @@ private fun UserListContentPreview() {
             }
           )
         ),
-        snackbarHostState = SnackbarHostState(),
-        pullToRefreshState = rememberPullToRefreshState(),
+        snackBarHostState = SnackbarHostState(),
+        onRefresh = {}
       )
     }
   }

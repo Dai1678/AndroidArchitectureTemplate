@@ -41,7 +41,7 @@ class UserListViewModelSpec : DescribeSpec({
       it("uiState should be users") {
         viewModel.uiState.value shouldBe UserListContentUiState(
           userListUiState = UserListUiState.UserList(
-            isRefresh = false,
+            isRefreshUserList = false,
             users = listOf(User.fake())
           )
         )
@@ -62,7 +62,7 @@ class UserListViewModelSpec : DescribeSpec({
       it("uiState should be empty") {
         viewModel.uiState.value shouldBe UserListContentUiState(
           userListUiState = UserListUiState.UserList(
-            isRefresh = false,
+            isRefreshUserList = false,
             users = emptyList()
           )
         )
@@ -86,7 +86,7 @@ class UserListViewModelSpec : DescribeSpec({
       it("uiState should be users") {
         viewModel.uiState.value shouldBe UserListContentUiState(
           userListUiState = UserListUiState.UserList(
-            isRefresh = false,
+            isRefreshUserList = false,
             users = listOf(User.fake())
           )
         )
@@ -112,7 +112,7 @@ class UserListViewModelSpec : DescribeSpec({
       it("uiState should be users") {
         viewModel.uiState.value shouldBe UserListContentUiState(
           userListUiState = UserListUiState.UserList(
-            isRefresh = false,
+            isRefreshUserList = false,
             users = listOf(User.fake())
           )
         )

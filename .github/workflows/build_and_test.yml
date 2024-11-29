@@ -73,15 +73,13 @@ jobs:
           script: ./gradlew connectedCheck --no-daemon --stacktrace
 
       - name: Run kover coverage report
+        if: always()
         run: ./gradlew koverXmlReport --no-daemon --stacktrace
 
-      - name: Setup ruby
-        uses: ruby/setup-ruby@v1
+      - name: Upload Coverage to CodeCov
+        uses: codecov/codecov-action@v5
+        if: always()
         with:
-          ruby-version: '3.3'
-          bundler-cache: true
-
-      - name: run danger
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: bundle exec danger
+          files: ./build/reports/kover/report.xml
+          token: ${{ secrets.CODECOV_TOKEN }}
+          verbose: true

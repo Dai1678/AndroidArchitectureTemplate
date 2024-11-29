@@ -1,9 +1,9 @@
-plugins {
-  alias(libs.plugins.android.architecture.template.android.application)
-  alias(libs.plugins.android.architecture.template.android.application.compose)
-  alias(libs.plugins.android.architecture.template.android.application.firebase)
-  alias(libs.plugins.android.architecture.template.android.hilt)
-  alias(libs.plugins.android.architecture.template.kover)
+ plugins {
+  alias(libs.plugins.project.android.application)
+  alias(libs.plugins.project.android.application.compose)
+  alias(libs.plugins.project.android.application.firebase)
+  alias(libs.plugins.project.android.hilt)
+  alias(libs.plugins.project.kover)
 }
 
 android {
@@ -48,6 +48,7 @@ dependencies {
   implementation(libs.androidx.navigation.compose)
   implementation(libs.kotlinx.coroutines.android)
   implementation(libs.coil.kt.compose)
+  implementation(libs.timber)
 
   ksp(libs.hilt.compiler)
 

@@ -1,7 +1,7 @@
 plugins {
-  alias(libs.plugins.android.architecture.template.android.library)
+  alias(libs.plugins.project.android.library)
 }
 
 android {
-  namespace = "dev.dai.android.architecture.core.model"
+  namespace = "dev.dai.android.architecture.template.core.model"
 }

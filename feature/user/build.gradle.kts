@@ -1,6 +1,6 @@
 plugins {
-  alias(libs.plugins.android.architecture.template.android.feature)
-  alias(libs.plugins.android.architecture.template.android.library.compose)
+  alias(libs.plugins.project.android.feature)
+  alias(libs.plugins.project.android.library.compose)
 }
 
 android {
@@ -19,4 +19,7 @@ dependencies {
 
   testImplementation(libs.kotlinx.coroutines.test)
   testImplementation(libs.mockk)
+  testImplementation(libs.kotest.runner.junit5)
+  testImplementation(libs.kotest.assertions.core)
+  testImplementation(libs.kotest.property)
 }

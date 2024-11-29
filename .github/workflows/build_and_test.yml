@@ -73,12 +73,13 @@ jobs:
           script: ./gradlew connectedCheck --no-daemon --stacktrace
 
       - name: Run kover coverage report
+        if: always()
         run: ./gradlew koverXmlReport --no-daemon --stacktrace
 
       - name: Upload Coverage to CodeCov
-        uses: codecov/codecov-action@v4
+        uses: codecov/codecov-action@v5
+        if: always()
         with:
-          fail_ci_if_error: true
           files: ./build/reports/kover/report.xml
-          token: ${{ secrets.CODECOV_TOKEN }} # TODO Add CODECOV_TOKEN to your repository secrets
+          token: ${{ secrets.CODECOV_TOKEN }}
           verbose: true

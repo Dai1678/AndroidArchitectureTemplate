@@ -30,39 +30,39 @@ dependencies {
 gradlePlugin {
   plugins {
     register("androidApplicationCompose") {
-      id = "android.architecture.template.android.application.compose"
+      id = "project.android.application.compose"
       implementationClass = "AndroidApplicationComposeConventionPlugin"
     }
     register("androidApplicationFirebase") {
-      id = "android.architecture.template.android.application.firebase"
+      id = "project.android.application.firebase"
       implementationClass = "AndroidApplicationFirebaseConventionPlugin"
     }
     register("androidApplication") {
-      id = "android.architecture.template.android.application"
+      id = "project.android.application"
       implementationClass = "AndroidApplicationConventionPlugin"
     }
     register("androidLibraryCompose") {
-      id = "android.architecture.template.android.library.compose"
+      id = "project.android.library.compose"
       implementationClass = "AndroidLibraryComposeConventionPlugin"
     }
     register("androidLibrary") {
-      id = "android.architecture.template.android.library"
+      id = "project.android.library"
       implementationClass = "AndroidLibraryConventionPlugin"
     }
     register("androidFeature") {
-      id = "android.architecture.template.android.feature"
+      id = "project.android.feature"
       implementationClass = "AndroidFeatureConventionPlugin"
     }
     register("androidHilt") {
-      id = "android.architecture.template.android.hilt"
+      id = "project.android.hilt"
       implementationClass = "AndroidHiltConventionPlugin"
     }
     register("detekt") {
-      id = "android.architecture.template.detekt"
+      id = "project.detekt"
       implementationClass = "DetektConventionPlugin"
     }
     register("kover") {
-      id = "android.architecture.template.kover"
+      id = "project.kover"
       implementationClass = "KoverConventionPlugin"
     }
   }

@@ -1,5 +1,5 @@
 plugins {
-  alias(libs.plugins.android.architecture.template.android.library)
+  alias(libs.plugins.project.android.library)
 }
 
 android {
@@ -14,4 +14,5 @@ dependencies {
   api(libs.kotlinx.coroutines.test)
 
   implementation(libs.androidx.test.rules)
+  implementation(libs.kotest.runner.junit5)
 }

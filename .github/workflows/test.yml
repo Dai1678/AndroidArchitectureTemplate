@@ -1,4 +1,4 @@
-name: Run build and test
+name: Run unit test and instrumentation test
 
 on:
   pull_request:
@@ -12,7 +12,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  build_test:
+  test:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     permissions:
@@ -24,13 +24,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       - uses: ./.github/actions/setup-java
-
-      - name: Build with Gradle
-        run: ./gradlew assembleDebug --no-daemon --stacktrace
 
       - name: Run test
         run: ./gradlew testDebug --no-daemon --stacktrace

@@ -1,4 +1,4 @@
-name: Run Github CodeQL
+name: Run build and Github CodeQL
 
 on:
   pull_request:
@@ -12,7 +12,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  analyze:
+  build:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     permissions:

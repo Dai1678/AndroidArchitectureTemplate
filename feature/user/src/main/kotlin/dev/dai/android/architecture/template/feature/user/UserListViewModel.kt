@@ -3,8 +3,8 @@ package dev.dai.android.architecture.template.feature.user
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import dev.dai.android.architecture.template.core.data.user.UserRepository
 import dev.dai.android.architecture.template.common.runExceptionCatching
+import dev.dai.android.architecture.template.core.data.user.UserRepository
 import dev.dai.android.architecture.template.core.model.User
 import dev.dai.android.architecture.template.ui.STOP_TIMEOUT_MILLIS
 import dev.dai.android.architecture.template.ui.UserMessageStateHolder
@@ -74,7 +74,7 @@ class UserListViewModel @Inject constructor(
       UserListUiState.Loading
     } else {
       UserListUiState.UserList(
-        isRefresh = isRefresh,
+        isRefreshUserList = isRefresh,
         users = users,
       )
     }

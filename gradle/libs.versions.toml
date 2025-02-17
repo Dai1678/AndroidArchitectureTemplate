@@ -4,7 +4,7 @@ targetSdkVersion = "34"
 minSdkVersion = "28"
 
 androidGradlePlugin = "8.7.3"
-androidxActivity = "1.9.3"
+androidxActivity = "1.10.0"
 androidxBrowser = "1.8.0"
 androidxComposeBom = "2024.11.00"
 androidxCore = "1.15.0"

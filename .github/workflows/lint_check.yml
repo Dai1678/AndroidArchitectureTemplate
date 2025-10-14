@@ -21,7 +21,7 @@ jobs:
         run: ./gradlew detekt --no-daemon
 
       - name: Upload detekt SARIF file
-        uses: github/codeql-action/upload-sarif@v3
+        uses: github/codeql-action/upload-sarif@v4
         with:
           sarif_file: ./build/reports/detekt/merge.sarif
           category: detekt
@@ -30,7 +30,7 @@ jobs:
         run: ./gradlew lintDebug --no-daemon
 
       - name: Upload androidLint SARIF file
-        uses: github/codeql-action/upload-sarif@v3
+        uses: github/codeql-action/upload-sarif@v4
         with:
           sarif_file: ./app/build/reports/lint-results-debug.sarif
           category: androidLint
